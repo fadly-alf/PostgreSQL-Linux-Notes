@@ -1,0 +1,583 @@
+install postgres: https://docs.google.com/document/d/1XfQbFsJgdamdi1gyYU8x6dKnJTem5KQGL98PbIfht50/edit?tab=t.0
+Install telegraf: https://docs.influxdata.com/telegraf/v1/install/
+
+Install pg-activity:
+- sudo apt install pg-activity -y
+Lalu jalankan dengan command:
+- pg_activity -h nama_host -U nama_user -d nama_database -p nomor_port ---> pg_activity -h localhost -U pgsql -d postgres -p 5432
+
+Setting pgbench untuk benchmark replication yang sudah dibuat
+- pgbench -i -s 10 nama_database_kalian
+Lalu jalankan dengan command:
+- pgbench -c 10 -j 2 -T 60 nama_database_kaliann
+
+Install Grafana-Server:
+- sudo apt update
+- sudo apt upgrade
+- sudo apt install -y software-properties-common
+- sudo add-apt-repository "deb https://packages.grafana.com/oss/deb stable main"
+- sudo wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+- sudo apt update
+- sudo apt install Grafana
+- sudo systemctl start grafana server
+- sudo systemctl status grafana-server
+- sudo systemctl enable grafana-server
+- Buka di browser http://localhost:3000 atau http://ip_lokal:3000 missal (http://192.168.8.71:3000)
+- Password: admin User:admin
+
+Command Tmux:
+Ctrl + b: Prefix untuk semua perintah tmux.
+Manajemen Windows
+Ctrl + b + c: Membuat window baru.
+Ctrl + b + n: Pindah ke window berikutnya.
+Ctrl + b + p: Pindah ke window sebelumnya.
+Ctrl + b + &: Menutup window saat ini.
+Manajemen Panes (Split)
+Ctrl + b + ": Membagi window secara horizontal (membuat pane baru di bawah).
+Ctrl + b + %: Membagi window secara vertikal (membuat pane baru di samping).
+Ctrl + b + x: Menutup pane saat ini.
+Ctrl + b + o: Pindah ke pane berikutnya.
+Ctrl + b + {: Pindah pane ke kiri.
+Ctrl + b + }: Pindah pane ke kanan.
+Manajemen Sessions
+Ctrl + b + d: Detach dari session saat ini.
+tmux attach: Attach ke session tmux yang ada.
+tmux ls: Menampilkan daftar sessions tmux yang sedang berjalan.
+tmux new -s session_name: Membuat session baru dengan nama session_name.
+tmux kill-session -t session_name: Menghentikan session dengan nama session_name.
+Resizing Panes
+Ctrl + b + :: Masuk ke command mode, ketik perintah manual (misalnya resize-pane).
+Ctrl + b + Alt + Up/Down/Left/Right: Resize pane.
+Copy Mode
+Ctrl + b + [: Masuk ke copy mode (scroll atau memilih teks).
+Space: Mulai memilih teks dalam copy mode.
+Enter: Salin teks yang dipilih ke clipboard tmux.
+Ctrl + b + ]: Paste teks yang telah disalin.
+Miscellaneous
+Ctrl + b + ?: Menampilkan semua shortcut tmux.
+Ctrl + b + :: Membuka prompt untuk mengetik perintah tmux manual.
+
+MEMBUAT LOGICAL REPLICATION CONNECT KE HA
+
+config pg_hba untuk ip logical replication pada kedua HA server
+config postgresql.conf pada logical
+Listen_addresses = ‘*’
+Aktifkan port
+Wal_level = logical
+archive_mode = on
+archive_command = 'cp %p /equnix/wal/%f'
+restartdb
+buat publication pada master server
+CREATE PUBLICATION nama_publication FOR TABLE nama_table;
+grant jika role/user tidak memiliki akses/privillages
+GRANT SELECT ON TABLE namatable TO namarole;
+cek
+SELECT * FROM pg_publication_tables WHERE pubname = 'my_publication';
+buat database dan table beserta field yang ingin di replikasi di logical
+buat subscription pada logical 
+CREATE SUBSCRIPTION nama_subscription
+CONNECTION 'host=vip_ip port=5432 user=namausername dbname=namadatabase password=namapassword'
+PUBLICATION nama_publication;
+jalankan kembali sudo /equnix/scripts/backup/equ_dbresync.sh pada standby server
+Cek status pada keduanya untuk memastikan sudah berjalan dengan baik.
+untuk master server
+SELECT * FROM pg_replication_slots;
+untuk logical server
+SELECT * FROM pg_stat_subscription;
+
+Query Untuk Cek privilege user dari information_schema.role_table_grants:
+
+SELECT
+    grantee,
+    table_schema,
+    table_name,
+    privilege_type
+FROM
+    information_schema.role_table_grants
+WHERE
+    grantee = 'nama_user';
+
+
+1. Script 11db.sh ---> /etc/init.d/11db.sh
+
+WHO=whoami
+PGUSER=pgsql
+PGCTL=/equnix/apps/16/bin/pg_ctl
+DTDIR=/equnix/data
+LGSTR=${DTDIR}/startup.log
+
+	 su - $PGUSER -c "$PGCTL -D $DTDIR -l $LGSTR $1";
+
+2. Script 01_eqnx_connections.conf ---> /equnix/data/conf.d/
+
+listen_addresses = '*'
+port = 5432
+max_connections = 5000
+password_encryption = scram-sha-256
+
+3. Script 02_eqnx_resources.conf
+
+shared_buffers = 128MB
+temp_buffers = 128MB
+work_mem = 128MB
+maintenance_work_mem = 1GB
+effective_cache_size = 46GB
+synchronous_commit = off
+bgwriter_delay = 300
+wal_writer_delay = 300
+commit_delay = 200
+min_wal_size = 1GB
+max_wal_size = 3GB
+full_page_writes = on
+huge_pages = off
+wal_buffers = 32MB
+ 
+#shared_preload_libraries = 'pg_stat_statements'
+#track_activity_query_size = 2048
+#pg_stat_statements.max = 10000
+#pg_stat_statements.track = all
+
+4. Script 03_eqnx_replications.conf ---> /equnix/data/conf.d/
+
+wal_level = logical
+max_wal_senders = 10
+wal_keep_size = 2048
+hot_standby = on
+checkpoint_completion_target = 0.9
+max_replication_slots = 10
+#max_standby_streaming_delay = 6h
+#synchronous_standby_names =  	'someapps'
+ 
+#REPLICATION
+primary_conninfo = 'user=pgsql host=node1 port=5432'
+recovery_target_timeline = 'latest'
+promote_trigger_file = '/equnix/data/promote_standby'
+restore_command = 'scp /equnix/archive/%f "%p"'
+#restore_command = 'scp 172.26.20.9:/equnix/archive/%f %p'
+
+5. Script 04_eqnx_logs.conf ---> /equnix/data/conf.d/
+
+log_destination = stderr
+logging_collector = on
+log_directory = 'log'
+log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+log_min_duration_statement = 5000
+log_line_prefix = '|%m|%r|%a|%d|%u|%p|%e|[%l]'
+log_statement = 'ddl'
+log_connections = on
+log_disconnections = on
+
+6. Script 05_eqnx_vacuums.conf ---> /equnix/data/conf.d/
+
+autovacuum = on
+#log_autovacuum_min_duration = 2000
+#autovacuum_max_workers = 8
+#autovacuum_vacuum_threshold = 500
+autovacuum_analyze_threshold = 500
+
+7. Script 06_eqnx_archives.conf ---> /equnix/data/conf.d/
+
+#archive_mode = on
+#archive_command = 'test ! -f /equnix/archive/%f && cp %p /equnix/archive/%f'
+#archive_command = 'cd .'
+
+8. Script 07_eqnx_ssl.conf ---> /equnix/data/conf.d/ 
+
+#ssl = on
+#ssl_ca_file = '/equnix/data/root.crt'
+#ssl_cert_file = '/equnix/data/server.crt'
+#ssl_crl_file = ''
+#ssl_key_file = '/equnix/data/server.key'
+#ssl_ciphers = 'HIGH:MEDIUM:+3DES:!aNULL' # allowed SSL ciphers
+#ssl_prefer_server_ciphers = on
+
+9. Script equ_dbresync.sh ---> /equnix/scripts/backup/
+
+#!/bin/bash
+# Copyright 2007-2022 Equnix Business Solutions,PT. All rights reserved
+# Script compile by: Iyan Iskandar
+# Developed by: Equnix Technical Team
+# "-------------------------------------------------------------------"
+# "|                  	Database Synchronization               	      |"
+# "|                  	XL                                            |"
+# "|                  	202208                                	      |"
+# "-------------------------------------------------------------------"
+#echo "---------------------- EQUNIX BUSINESS SOLUTIONS -----------------------";
+#echo "|                                                                      |"
+#echo "|                      	DB RESYNC SCRIPTS                             |"
+#echo "|                                                                      |"
+#echo "------------------------------------------------------------------------";
+ 
+VIP=10.0.2.100
+MASTER_HOST=node2
+BINDIR=/equnix/apps/16/bin
+PG_DATA_DIR=/equnix/data
+PG_WAL_DIR=/equnix/wal
+PG_TBLSPC1=/equnix/tblspc1
+PG_TBLSPC2=/equnix/tblspc2
+PG_PORT=5432
+PG_USER=pgsql
+OS_USER=pgsql
+LOG_FILE=/equnix/scripts/logs/dbresync_$(date '+%Y%m%d').log
+export PGPASSFILE='/equnix/scripts/.pgpass';
+ 
+logger (){
+    	# logger <message>
+    	echo "$(date +'%F %T')|$(hostname)|$1" >> "$LOG_FILE";
+}
+ 
+dbexec(){
+    	# dbexec <port> <query>
+        $BINDIR/psql -At -h $MASTER_HOST -U $PG_USER postgres -p $PG_PORT -c "$1"
+}
+ 
+IS_NODE_MASTER=$(/usr/sbin/ip a | grep -c $VIP)
+if [ "$IS_NODE_MASTER" -ge 1 ];
+then
+    	echo "---------------------- EQUNIX BUSINESS SOLUTIONS -----------------------";
+    	echo "|                                                                       |"
+	echo "|   	Warning!!! Virtual IP is exists this node is primary!         |"
+	echo "|                                                                       |"
+	echo "------------------------------------------------------------------------";
+	exit 0;
+fi
+
+if [ -f $PG_DATA_DIR/promote_standby ]; then
+	logger "Removing trigger_file on this nodes $(hostname)";
+	rm $PG_DATA_DIR/activate_standby
+fi;
+
+logger "Following Master on $MASTER_HOST:$PG_PORT";
+logger "Stopping Service 11DB/Postgres";
+PGPID=$(pgrep postgres -c);
+if [ -n "$PGPID" ]; then
+	/etc/init.d/11db.sh stop
+fi;
+
+echo "resynchronize WAL -----------------------------------------------";
+logger "Starting Synchronize WAL";
+su - $OS_USER -c "rsync -argv --progress --delete $OS_USER@$MASTER_HOST:$PG_WAL_DIR/ $PG_WAL_DIR/"
+logger "Synchronizing WAL done";
+
+logger "Executing start backup on resynchronized DB)";
+logger "$(dbexec "SELECT pg_start_backup('db_resync',true)")";
+
+echo "Resynchronize whole Data Directory ------------------------------";
+su - $OS_USER -c "rsync -arg $OS_USER@$MASTER_HOST:$PG_DATA_DIR/global/pg_control $PG_DATA_DIR/global/;"
+su - $OS_USER -c "rsync -arg --delete --progress \
+	--exclude=pg_control \
+	--exclude=pg_wal \
+	--exclude=log \
+	--exclude=standby.signal \
+	--exclude=postgresql.conf \
+	--exclude=pg_hba.conf \
+	--exclude=conf.d \
+	--exclude=postmaster.pid \
+	$OS_USER@$MASTER_HOST:$PG_DATA_DIR/ $PG_DATA_DIR/"
+	logger "Synchronizing data directory done";
+
+#echo "Resynchronize Tablespace Directory ------------------------------";
+#su - $OS_USER -c "rsync -arg --delete --progress $OS_USER@$MASTER_HOST:$PG_TBLSPC1/ $PG_TBLSPC1/"
+#su - $OS_USER -c "rsync -arg --delete --progress $OS_USER@$MASTER_HOST:$PG_TBLSPC2/ $PG_TBLSPC2/"
+
+echo "Stopping backup ----------------------------------------------------";
+logger "Executing stop backup on resynchronized DB ";
+logger "$(dbexec 'SELECT pg_stop_backup()')";
+
+echo "Resynchronize WAL Directory -----------------------------";
+su - $OS_USER -c "rsync -argv --progress $OS_USER@$MASTER_HOST:$PG_WAL_DIR/ $PG_WAL_DIR/;"
+logger "Synchronizing WAL done";
+
+echo "Creating standby.signal ----------------------------------";
+if [ ! -e $PG_DATA_DIR/standby.signal ]; then
+	logger "Creating standby.signal";
+	touch $PG_DATA_DIR/standby.signal;
+else
+	logger "File standby.signal is exists";
+fi;
+
+echo "Starting 11DB/Postgres Service -----------------------------------";
+/etc/init.d/11db.sh start;
+PGPID=$(pgrep postgres -c);
+if [ -n "$PGPID" ]; then
+	logger "11DB/Postgres Started";
+fi;
+
+logger "Checking replication status from Master Server)";
+sleep 5;
+logger "$(dbexec "SELECT client_addr,sync_state FROM pg_stat_replication")"
+exit 0;
+
+10. Script equ_activate_standby.sh ---> /equnix/scripts/ha/
+
+LOG_FILE=/equnix/scripts/logs/promote_$(date +%F).log
+case $1 in
+start)
+	echo "$(date '+%F %T')|$(hostname)|promoting standby server" >> "$LOG_FILE"
+        touch /equnix/data/promote_standby
+	exit 0
+;;
+*)
+        exit 0;
+esac;
+
+11. Script equ_forced_failover.sh ---> /equnix/scripts/ha/
+
+#!/bin/bash
+# Copyright 2007-2022 Equnix Business Solutions,PT. All rights reserved
+# Script compile by: Iyan Iskandar
+# Developed by: Equnix Technical Team
+# "-------------------------------------------------------------------------";
+# "|                      FORCE FAILOVER SCRIPTS                            |"
+# "|                      INTERNAL                                          |"
+# "|                      202208                                            |"
+#  "------------------------------------------------------------------------";
+#CLIENT="INTERNAL"
+PRIVATE_PEER=192.168.56.80
+#PRIVATE_PEER=10.1.1.4
+PGUSER=pgsql 
+OSUSER=pgsql
+PEER_NODE=node2
+PGDATADIR=/equnix/data
+DBPORT=5432
+SSHPORT=22
+LOGFILE=/equnix/scripts/logs/forced_failover_$(date +%Y%m%d).log
+
+# EmailAccount
+#DSTM="support@equnix.asia"
+#MAIL_FILE=/tmp/forced_failover
+
+# Function
+#send_mail_alert() {
+#    {
+#        echo "Importance: HIGH" 
+#        echo "" 
+#        echo "Dear Team," 
+#        echo ""
+#        echo "$HOSTNAME has executed FAILOVER and became MASTER on $(date +'%F %T')." 
+#        echo "Please check PostgreSQL instance instance and Virtual IP acquisition on server $HOSTNAME."
+#        echo "--------------------------------"
+#        echo " PostgreSQL Processes"
+#	sudo pgrep -a postgres| head -n 50
+#	sleep 2;
+#        echo "IP Address Check"
+#        ip addr;
+#        echo "--------------------------------"
+#        echo ""
+#        echo "Thank you." 
+#    } > "$MAIL_FILE";
+#    /usr/bin/mail -s "[ $CLIENT ] $HOSTNAME FAILOVER ALERT $(date +'%F %T')" "$DSTM" < "$MAIL_FILE";
+#}
+
+logger() {
+	echo "$(date '+%F %T')|$(hostname)|$1" >> "$LOGFILE"	
+}
+
+case $1 in
+start)
+	if [ -e $PGDATADIR/standby.signal ]; then
+    		if [ "$(/usr/bin/ping -c 1 $PRIVATE_PEER -W 1 | grep -c "bytes from")" -gt 0 ]; then
+	        	logger "Attempt to cluster standby Master Node through PRIVATE IP: $PRIVATE_PEER";
+		       	su - $OSUSER -c "ssh -p $SSHPORT -o ConnectTimeout=3 -o ConnectionAttempts=1 -t $PRIVATE_PEER \"sudo /equnix/scripts/HA_master/equ_exec_failover.sh\"";
+        		logger "Master Node has been clustered standby properly!";
+    		else
+        		logger "Attempt to reboot Master Node through PUBLIC IP: $PUBLIC_PEER";
+	       		su - $OSUSER -c "ssh -p $SSHPORT -o ConnectTimeout=3 -o ConnectionAttempts=1 -t $PUBLIC_PEER \"sudo /equnix/scripts/HA_master/equ_exec_failover.sh\"";
+        		echo "Master Node has been clustered standby properly!";
+		fi
+		/usr/sbin/pcs node standby $PEER_NODE	
+        	logger "Promoting PostgreSQL $HOSTNAME";
+	       	/equnix/scripts/ha/equ_activate_standby.sh start
+        	logger "Promoting $HOSTNAME Complete and become MASTER now!";
+#	       	send_mail_alert;
+ #       	logger "Email mailforcedfailoversent";
+		exit 0;
+	else
+		echo "The $HOSTNAME is NOT in Standby Mode!";
+    		exit 0;
+    	fi;
+	;;
+*)
+    	exit 0;
+esac;
+
+12. Script equ_db_check.sh ---> /equnix/scripts/ha/
+
+#!/bin/bash
+# Copyright 2007-2022 Equnix Business Solutions,PT. All rights reserved
+# Script compile by: Iyan Iskandar
+# Developed by: Equnix Technical Team
+# "-------------------------------------------------------------------------";
+# "|                      DBCHEK SCRIPTS                                    |"
+# "|                      INTERNAL                                          |"
+# "|                      202208                                            |"
+#  "------------------------------------------------------------------------";
+
+#CLIENT="INTERNAL"
+BINDIR=/equnix/apps/16/bin
+PGDATADIR=/equnix/data
+PEER_HOSTN=node2
+PEER_NODE=192.168.56.80
+LOGFILE=/equnix/scripts/logs/dbcheck_$(date '+%Y%m').log
+#MAILFILE=/tmp/maildbcheck
+#MAIL_DEST="fauzan@equnix.asia"
+FLAGS="/tmp/peerdown"
+
+# Connection Parameter
+PGUSER=pgsql
+OSUSER=pgsql
+DBPORT=5432
+SSHPORT=22
+export PGPASSFILE=/equnix/scripts/.pgpass
+
+logger (){
+        echo "$(date +'%F %T')|$(hostname)|$1" >> "$LOGFILE";
+}
+
+#fsendmail () {
+#        {
+#                echo "================================"
+#                date
+#                echo "================================"
+#                echo -e "Importance: MEDIUM\n"
+#                echo -e "Dear Team,\n"
+#                echo "$2"
+#                echo -e "\nThank you."
+#        } > $MAILFILE-"$1"
+#        /usr/bin/mail -s "[ $CLIENT ] Instance $1 has down" $MAIL_DEST < $MAILFILE-"$1";
+#        logger "Email $MAILFILE-$1 sent";
+#}
+
+instance_check(){
+        /usr/bin/netstat -ltpn | grep postgres | grep -c $DBPORT
+}
+
+is_standby_ready(){
+	su - $OSUSER -c "ssh -p $SSHPORT -o ConnectTimeout=3 -o ConnectionAttempts=1 -t $PEER_NODE \"sudo /usr/bin/netstat -lptn | grep postgres\"" | grep -c $DBPORT	
+}
+
+dbexec(){
+        $BINDIR/psql -At -h 127.0.0.1 -U $PGUSER postgres -p $DBPORT -c "$1"
+}
+
+restartdb(){
+        /etc/init.d/11db.sh restart
+}
+
+check_master() {
+        IS_MASTER_UP=$(instance_check);
+        if [ "$IS_MASTER_UP" -eq 0 ]; then
+                logger "Restarting Service 11DB/Postgres"
+                restartdb;
+                logger "Rechecking MASTER 11DB/Postgres service on $HOSTNAME after restart";
+                sleep 5;
+                RECHECK_MASTER=$(instance_check);
+                if [ "$RECHECK_MASTER" -ge 1 ]; then
+                        logger "11DB/Postgres has been restarted successfully"
+                else
+                        IS_STANDBY_READY=$(is_standby_ready);
+                        if [ "$IS_STANDBY_READY" -eq 0 ]; then
+                                logger "Standby Server not ready for failover, exiting"
+                                exit 0;
+                        else
+                                logger "Failovering to Standby Server"
+                                fsendmail master "$(echo -e\
+                                "PostgreSQL Instance in server $(hostname) failed to be restarted on $(date +'%F %T').\nFailover should happened and please check Failover process on Standby Node.\n\n")"
+                                /usr/sbin/pcs node standby;
+                                exit 0;
+                        fi;
+                        exit 0;
+                fi;
+        else
+                logger "Master $(hostname) 11DB/Postgres instance is running"
+        fi;
+}
+
+check_standby() {
+        PEER=$(sudo /usr/sbin/pcs status | grep $PEER_HOSTN | grep -c 'standby\|OFFLINE');
+        if [ "$PEER" -ge 1 ];then
+                logger "Cluster standby in offline mode, please check cluster";
+                exit 0;
+        else
+		IS_REPS_UP=$(dbexec "SELECT 1 FROM pg_stat_replication WHERE client_addr='${PEER_NODE}' AND state='streaming'");
+		if [ $?" -eq 0 ];then
+			if [ "$IS_REPS_UP" != 1 ]; then
+                                logger "Standby PostgreSQL service is NOT running!!!";
+                                if [ ! -e $FLAGS ]; then
+                                        touch $FLAGS;
+                                        logger "Sending email due to lost replication to Standby Instance";
+                                        fsendmail standby "$(echo -e\
+                                               "PostgreSQL Instance on $PEER_HOSTN has down.\nReplication from $(hostname) to ${PEER_HOSTN} instance has been disconnected on $(date +'%F %T').\nPlease check Standby Node immediately")"
+                                        logger "Set cluster standby on Standby server";
+                                        /usr/sbin/pcs node standby $PEER_HOSTN;
+                                        exit 0;
+                                fi;
+                        else
+                                logger "Standby instance is running"
+                                rm -f $FLAGS;
+                        fi;
+		else
+			logger "Connection to Database failed, skipping"
+                fi;
+	fi
+}
+
+case $1 in
+status)
+        if [ ! -e "$PGDATADIR"/standby.signal ]; then
+                logger "---------------------------------------------------"
+                check_master;
+		check_standby;
+                exit 0;
+        fi;
+	exit 0;
+;;
+
+*)
+	exit 0;
+;;
+
+esac;
+exit 0;
+
+13. Script equ_exec_failover.sh ---> /equnix/scripts/ha/
+
+LOGFILE=/equnix/scripts/logs/exec_failover_$(date +%Y%m).log
+logger (){
+        # logger <message>
+        echo "$(date +'%F %T')|$(hostname)|$1" >> "$LOGFILE";
+}
+logger "killing local PostgreSQL instances $HOSTNAME"
+for i in $(/usr/bin/netstat -lpnt | grep postgres|grep -v tcp6| awk '{print $7}'| awk -F '/' '{print $1}');
+	do kill -9 "$i";
+done
+logger "Failover executed $HOSTNAME"
+/sbin/reboot
+exit 0
+
+14. Script pgpass ---> /equnix/scripts/.pgpass
+
+10.0.2.31:5432:postgres:pgsql:pgsql #ip node1 (Contoh)
+10.0.2.32:5432:postgres:pgsql:pgsql #ip node2
+10.0.2.33:5432:postgres:pgsql:pgsql #ip node3 (logical)
+
+
+cek privileged user:
+select grantor, grantee, table_schema, table_name, privilege_type from information_schema.role_table_grants where grantee = 'nama_user';
+
+postgres=# \d information_schema.role_table_grants 
+                     View "information_schema.role_table_grants"
+     Column     |               Type                | Collation | Nullable | Default 
+----------------+-----------------------------------+-----------+----------+---------
+ grantor        | information_schema.sql_identifier |           |          | 
+ grantee        | information_schema.sql_identifier |           |          | 
+ table_catalog  | information_schema.sql_identifier |           |          | 
+ table_schema   | information_schema.sql_identifier |           |          | 
+ table_name     | information_schema.sql_identifier |           |          | 
+ privilege_type | information_schema.character_data |           |          | 
+ is_grantable   | information_schema.yes_or_no      |           |          | 
+ with_hierarchy | information_schema.yes_or_no      |           |          | 
+
+#Hal yang perlu diubah di script jika menggunakan Postgres16
+1. wal_keep_segments diubah ke wal_keep_size 
+2. promote_trigger_file dihapus
