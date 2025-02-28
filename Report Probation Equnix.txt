@@ -1,0 +1,1464 @@
+﻿Daily Report 08/08/2024
+
+
+A. Mempelajari tentang distribusi Distro Linux. Adapun jenis distro Linux yang saya ketahui di antaranya:
+1. Debian
+2. Ubuntu
+3. Fedora
+4. Red Hat Linux
+5. Linux Mint
+
+
+B. Basic command line Linux yang telah dipelajari di antaranya:
+1. pwd: mengetahui di direktori mana kita berada
+2. cd: mengubah direktori
+3. ls: menampilkan daftar konten
+4. touch: membuat file
+5. file: mendeskripsikan sebuah file
+6. cat: untuk membaca sebuah file
+7. less: menampilkan isi file secara lebih terperinci
+
+
+C. Latihan mengetik di MonkeyType.com:
+Melakukan latihan mengetik di MonkeyType dengan durasi waktu 120 detik, menggunakan Bahasa Inggris, dengan hasil yang didapat senilai 49 Word Per Minute
+
+
+Daily Report 08/08/2024
+Jumat, 09-08-2024
+A. Mempelajari basic command Linux:
+1. Standar output untuk meneruskan hasil/output kedalam sebuah file
+2. Standar input input isi file kedalam suatu komen
+3. Standar error untuk memfilter error/output error dari output sebuah command
+4. Tee: untuk menampilkan hasil dari suatu command ke layar dan juga menyimpan hasil output ke dalam sebuah file
+5. env: untuk mengecek variables yang ada, command tersebut akan menampilkan informasi variabel yang kita miliki, kemudian kita bisa mengetikkan echo $variable berdasarkan informasi dari command env yang telah diketikkan sebelumnya.
+
+
+Daily Report 12/08/2024
+1. Linux User Management 
+1. su: substitute user berfungsi untuk berganti dari satu user ke user lain
+2. sudo: superuser do berfungsi untuk mengakses perizinan tertentu tanpa harus masuk ke user root terlebih dahulu
+3. cat /etc/passwd: menunjukkan informasi user ID. Setelah enter maka akan muncul informasi sebagai contoh root:x:0:0:root:/root:/bin/bash . Adapun informasi yang berada pada line tersebut adalah:
+* root : nama user
+* x : artinya password dsimpan di dalam file /etc/shadow
+* 0 : user ID
+* 0 : group ID
+* root : berupa username pengguna
+* /root : home direktori milik user
+* /bin/bash : jenis shell yang digunakan
+4. sudo cat /etc/shadow: menunjukan data autentikasi milik user, untuk mengakses memerlukan sudo. Line yang muncul akan seperti ini root:MyEPTEa$6Nonsense:15000:0:99999:7:::  adapun penjelasannya:
+* root : username 
+* MyEPTEa$6Nonsense :  password yang telah terenkripsi
+* 15000 : tanggal terakhir password diganti
+* 0 : waktu yang diperlukan untuk mengganti password
+* 99999 : batas waktu maksimal bagi user untuk mengganti password
+* 7 : waktu peringatan sebelum password expired
+5. cat /etc/group: mirip dengan /etc/passwd yaitu menampilkan informasi group name, group id, group password
+B. Linux Permissions
+1. chown: untuk mengubah owner dari suatu file dan direktori
+2. chgrp: untuk mengubah group dari suatu file dan direktori
+3. adduser, deluser, passwd user, adduser –ingroup, groupadd, groupdel,chmod, chown, chgrp, su user, whoami, touch, ls, cat, less, whatis, file, mv, cp, mkdir, rm, rmdir, finger: sebuah extension untuk melihat detail dari seorang user
+
+
+Daily Report 13/08/2024
+1. Basic Command Linux:
+1. whoami: untuk menampilkan username yang sedang kita pakai
+2. who: untuk menampilkan informasi login dari user
+3. cat: menampilkan isi dari sebuah file ke layar 
+4. less: melihat isi dari sebuah file di sebuah new windows dengan fitur tambahan
+5. su: substitute user, untuk berganti user
+6. sudo: superuser do, untuk menjalankan sebuah command yang membutuhkan akses root
+7. ls: menampilkan daftar list konten di lokasi saat ini -ltrha
+8. pwd: menampilkan path direktori dimana kita berada saat ini
+9. cd: berpindah direktori
+10. touch: membuat sebuah file
+11. mkdir: membuat sebuah direktori -p
+12. rm: menghapus file
+13. rmdir: menghapus sebuah direktori kosong
+14. chown: mengubah kepemilikan dari sebuah folder/file
+15. chmod: mengubah/memodifikasi perizinan dari sebuah folder/file -
+terkait read write dan exceute
+16. adduser: membuat user baru beserta home direktorinya
+17. useradd: membuat user baru saja tanpa ada home direktori
+18. deluser: menghapus user yang telah ada
+19. groupadd: membuat sebuah grup yang baru
+20. groupdel: menghapus sebuah grup
+21. chgrp: mengubah kepemilikan grub
+22. mv: mengubah lokasi/nama sebuah file/direktori
+23. cp: menyalin sebuah file/direktori
+24. sleep: menghentikan sementara/pause terminal selama rentang waktu tertentu
+25. ps: menampilkan sebuah proses yang sedang berjalan
+26. head: menampilkan 10 line pertama dari sebuah file. -n untuk menampilkan line sejumlah yang kita mau
+27. tail: menampilkan 10 line terakhir dari sebuah file
+28. jobs: menampilkan sebuah proses di background yang belum selesai
+29. bg: untuk kembali menjalankan sebuah proses yang terhenti di background
+30. open: untuk membuka sebuah file/url
+31. sort: untuk menyortir sebuah file berdasarkan kategori tertentu -rn
+32. wc: untuk nge print line, word, dan byte dari sebuah file -lmw
+33. find: untuk menemukan sebuah file/direktori berdasarkan kategori tertentu. find (dari lokasi mana)
+-type (tipe file yang dicari) -name (nama file tersebut)
+34. diff: untuk menampilkan sebuah komparasi dari 2 file dengan 2 konten yang berbeda
+35. uniq: untuk menyatukan sebuah konten yang berulang/repeated lines
+36. du: untuk menampilkan disk usage suatu direktori/file. -hd0 (depth path) direktori ./ (direktori yang ingin dicari)
+37. df: untuk menampilkan filesystem dan berapa diskusage, size, used
+
+
+B. Pengenalan Grafana:
+- Mengikuti Gmeet dengan Kak Alif membahas sekaligus pengenalan terhadap monitoring sistem dan server menggunakan Grafana
+
+
+Daily Report 14/08/2024
+1. Belajar Basic Command Linux:
+1. gzip: digunakan untuk kompres dan arsip sebuah file lalu mengubahnya ke format zip dengan extension (.gz), file asli/acuan akan hilang
+2. gunzip: digunakan untuk dekompres sebuah file mengubah sebuah file zip 
+3. tar: bisa digunakan untuk kompres beberapa file sekaligus, dimana hal tersebut tidak bisa digunakan dengan command gzip. 
+* Untuk kompres dengan command tar dapat dilakukan dengan mengetikkan: [tar cvf mytarfile.tar file1 file2], (cvf: Create:buat Verbose:banyak kata Filename:nama file) digunakan untuk kompres, (mytarfile.tar) nama dari file tar yang akan kita buat, (file1&2) file apa saja yang ingin kita kompres sebagai sebuah (.tar). 
+* Sedangkan untuk dekompres sebuah file (.tar) dapat dilakukan dengan mengetikan command: [tar xvf tarfile.tar] (tar) command tar (xvf) untuk ekstrak (nama file yang akan di ekstrak), (xvf: Xtract Verbose Filename).
+4. nano: nano adalah sebuah teks editor yang digunakan pada Linux/Unix-like, dengan menggunakan nano kita dapat membuka dan mengedit sebuah file. Untuk menggunakan command nano dapat dilakukan dengan mengetikkan [nano namafile] misal nano file.txt, jika file yang ingin dibuka berada di folder lain selain di tempat kita berada saat ini maka dapat dilakukan dengan mengetikkan nano dibarengin dengan path folder lalu nama file yang dimaksud, contohnya [nano /etc/sudoers]. sudoers adalah nama file yang ingin kita akses dan edit, sedangkan /etc adalah direktori dimana file sudoers tersimpan.
+5. xargs: untuk membuat sebuah file/direktori berdasarkan argumen yang ada.
+* contoh: [echo “apple banana mint” | xargs mkdir] (echo “apple banana mint) adalah sebuah argumen, kemudian perintah (xagrs) akan mengubah argumen tersebut ke (mkdir) sesuai yang ditulis di belakang.
+6. ln: untuk membuat sebuah salinan dan bisa juga sebagai shortcut link ke file tertentu. Adapun contoh penggunaan command:
+* ln test1 test2: (ln) adalah command untuk link, (test1) adalah file acuan, (test2) adalah file yang akan menjadi sebuah salinan. 
+* ln -s test1 test2: (ln) adalah command, (-s) membuat simbolik link, (test1) file acuan, (test2) file yang akan menjadi shortcut. (-s) membuat file salinan sebagai sebuah shortcut kepada file acuan. Jika file (test2) dibuka maka akan langsung mengarah kepada file acuan yaitu (test1).
+7. kill: untuk menghentikan sebuah proses menggunakan nomor PID. Adapun penggunaan command tersebut adalah [kill 123] 123 adalah contoh dari nomor PID, nomor PID dapat bervariasi dan dapat diketik menggunakan command ps -ef, ef adalah option untuk menampilkan secara lengkap.
+8. pkill: untuk menghentikan sebuah proses menggunakan pattern tertentu. Contohnya [pkill chrome] chrome merupakan nama proses akan tetapi ada beberapa proses yang memilik PID berbeda, dengan menambahkan pattern tertentu misal [pkill chrome 1234] maka proses bernama chrome dengan PID 1234 akan di hentikan, akan tetapi proses yang memiliki nama chrome dan PID yang berbeda tidak akan ikut di eliminasi.ta
+9. killall: untuk menghentikkan sebuah proses yang memiliki nama yang sama. Misal [killall chrome] semua proses yang memilik nama chrome akan di hentikan. 
+10. Perbedaan zip, gzip, tar, tar.gz
+* zip: untuk mengarsip dan kompress 1 file atau beberapa file sekaligus dan file asli/acuan tetap ada, misal [zip namafile a b c] namafile adalah nama file yang akan menjadi zip.
+* gzip: untuk mengarsip dan kompress file, hanya satu file saja yang bisa, dan file asli/acuan akan hilang, misal [gzip file].
+* tar: untuk mengarsip 1 atau beberapa file sekaligus tetapi tidak kompres file tersebut, sehingga file ter arsip tetapi size nya tetap besar. File asli/acuan tidak akan hilang, misal [tar -cvf namafile a b c], untuk untar dapa dilakukan dengan [tar -xvf namafile].
+* tar.gz: mengarsip dan kompress beberapa file sekaligus, dan size nya bisa lebih kecil dari file .zip
+* bzip: mengompresi file berat menjadi lebih kecil dari gzip, akan tetapi memakan proses/waktu yang lebih lama.
+11. free: mengecek penggunaan RAM atau RAM usage.
+B. Mempelajari Network Sharing di linuxjourney.com
+        File Sharing merupakan proses yang digunakan untuk men-transfer sebuah file/direktori dari satu komputer ke komputer lain yang berada dalam satu jaringan/network yang sama. Alih-alih menggunakan perangkat penyimpan file seperti USB untuk memindahkan sebuah file, kita cukup melakukan sharing antar perangkat yang berada dalam satu jaringan file yang sama. Dalam sharing network umumnya menggunakan command (scp) yang merupakan singkatan dari secure copy, fungsinya sama seperti command (cp) sehingga memungkinkan untuk copy sebuah file/direktori dari satu host ke host lain.
+1. scp: untuk meng-copy sebuah file dari local ke remot ataupun sebaliknya. Contoh command untuk copy dari local host ke remote host: [scp contohfile.txt username@remothost.com:/remote/directory], (scp) untuk copy, (contohfile.txt) nama file/direktori yang ingin di-copy, (username@remothost.com), nama pengguna di remote host, sedangkan remotehost.com adalah nama domain/alamat ip dari remote host,(:/remote/directory), (:/) berfungsi untuk memisahkan alamat host dari path direktori di remote host.
+2. Command untuk meng-copy dari remote host ke lokal host milik kita [scp username@remotehost.com:/remote/directory/contohfile.txt /local/directory], (scp), untuk copy sebuah file/direktori, (username@remotehost), username dan remote host adalah milik remote host, (:/remote/directory/contohfile.txt), merupakan path file/folder yang ingin di-copy berada pada pc remote, (/local/directory), adalah tempat dimana kita meletakkan file yang kita copy dari pc remote.
+3. Setting IP debian & menggunakan ssh untuk menyambungkan debian dengan powershell pada windows: 
+* ketik sudo vim /etc/network/interfaces
+* edit ip
+* iface enp0s3 inet static
+* address 192.168.8.10 (mengikuti gateway)
+* netmask 255.255.255.0
+* gateway 192.168.8.1 (mengikuti isp dapat di cek di host kita sendiri dengan ipconfig untuk windows, dan ip a di linux)
+* iface enp0s8 static
+* address 10.0.2.11
+* netmask 255.255.255.0
+* gateway 10.0.2.1
+* lalu simpan 
+* kemudian sudo reboot untuk me-reboot
+* coba ping google/8.8.8.8, jika berhasil maka sudah selesai
+* lalu buka powershell/cmd di windows untuk masuk ke jaringan
+* ketikkan ssh debian@ip
+bertu
+
+
+Daily Report 15/08/2024
+1. Melakukan exercise Basic Command Linux di linuxsurvival.com untuk lebih memahami:
+* Direktori linux bagaikan sebuah pohon yang bercabang ke bawah, ada 1 batang pohon utama atau root diberi tanda (/), dan dari situ terdapat cabang-cabang lainnya ke bawah yang masing-masing memuat sebuah konten.
+* Di linux ketika ingin mengubah atau menambah sebuah file/direktori maka tidak perlu untuk masuk satu persatu ke dalam path nya dari masing-masing file tersebut berada. Hanya perlu mengingat saja path dari setiap file/direktori, misal saat ini kita berada di /home/debian/animals, didalam direktori animals terdapat direktori yang bernama darat dan laut, misal jika ingin meanambahkan konten bernama ikan yang akan berada dalam folder laut, maka tidak perlu masuk ke dalam folder laut dulu, cukup mengetikkan path kita berada saat ini dan arahkan ke direktori yang dituju, misal touch /home/debian/animals/laut/ikan.
+* 2. Mempelajari filesystem di linuxjourney.com
+1. Filesystem Tree: dalam linux, terdapat structure yang dapat dilihat untuk mengetahui hierarki dari masing-masing direktori. Untuk mengetahui hierarki atau tree dari sebuah direktori dapat dilakukan dengan menginstall tree terlebih dahulu sebagai berikut:
+* sudo apt install tree
+* ketikkan direktori yang ingin dilihat seperti apa cabangnya misal [tree /], command tersebut untuk menunjukkan tree atau cabang dari root (/).
+2. Filesystem Hierarchy: untuk melihat struktur direktori root dapat dilihat dengan mengetikan command [ls -l /]. Adapun penjelasan dari masing-masing part yang tampil di layar adalah:
+* (/), merupakan simbol dari root direktori, apabila suatu direktori tertulis seperti ini [/home], maka berarti direktori tersebut berada di dalam root. Root merupakan direktori utama dari linux dan di dalamnya berisi konten file/direktori lain.
+* (/bin), merupakan singkatan dari (binaries), dalam direktori ini tersimpan basic command seperti (ls) dan (cp) .
+* (/boot), berisi file boot loader yang dibutuhkan untuk load booting sistem.
+* (/dev), berisi informasi file milik device hardware, misalnya file harddisk maka akan tertulis [/dev/sda].
+* (/etc), direktori yang berisi file konfigurasi sistem.
+* (/home), direktori pribadi yang berisi dokumen, file, settingan folder, dan beberapa lainnya.
+* (/lib), berisi fille library yang bisa digunakan oleh binaries.
+* (/media), berisi informasi mengenai removeable device, jadi apabila kita memasang USB di laptop, maka informasi dari USB tersebut akan berada di dalam direktori /media
+* (/mnt), mount merupakan direktori yang digunakan oleh sistem administrator untuk mounting sebuah filesystem, secara sementara, misal menggunakan hdd.
+* (/opt), berisi software package tambahan program yang bukan bagian dari standard installation, termasuk third party.
+* (/proc), informasi terkait proses yang sedang running dari hardware bawaan saat ini, misalny /proc/cpuinfo.
+* (/root), home direktori milik user root.
+* (/run), berisi informasi terkait system yang berjalan sejak terakhir booting.
+* (/sbin), berisi sistem binari, isinya itu misal untuk command yang langsung mempengaruhi sistem itu sendiri, misal command (shutdown).
+* (/srv), berisi data spesifik yang disediakan oleh sistem, seperti web server, misal /srv/wwwls.
+* (/tmp), penyimpanan sementara sebuah file yang akan terbentuk saat execute program, biasanya file ini akan langsung dihapus saat reboot
+* (/usr), user system resources, berisi konten milik user binaries, libraries, documentation, dan source code, karena itu ada direktori yang bernama /usr/bin, /usr/lib.
+* (/var),variable direktori berfungsi untuk menyimpan informasi dari sebuah file yang kemungkinan bertambah besar size nya, misalnya /var/mail
+* (/lost + found), adalah sebuah direktori dimana sebuah file yang telah direcover disimpan. Sebelum masuk ke sini, proses fsck (File System Consitency Check) akan melakukan scan terkait error dan berusaha untuk memperbaiki, apabila file yang error telah di scan dan missing files telah direcover, umumnya file yang telah di recover akan dikembalikan ke posisi asli nya, seandainya sistem tidak bisa untuk mengembalikan file yang hilang, maka file tersebut akan diletakan di /lost+found.
+C. Text Editor
+1. regex (Regular Expressions): digunakan untuk melakukan seleksi tertentu berdasarkan sebuah pola tertentu. Adapun beberapa argument yang bisa digunakan untuk menampilkan sebuah seleksi tertentu, misal kita buat sebuah kalimat 
+“sally sells seashells 
+by the seashore”. Kemudian gunakan sebuah argument:
+* (^) : argumen ini untuk menampilkan value yang cocok dengan kata di baris awal dari sebuah kalimat. Misal ketik [grep ^by filename], maka output akan tampil by the seashore. 
+* ($) : argumen ini merupakan kebaikan dari (^), digunakan untuk menampilkan sebuah kalimat dari kata paling akhir di baris kalimat tersebut, misal ketik [grep seashore$ filename] maka akan memunculkan kalimat by the seashore.
+* (b.) : argumen ini untuk menampilkan sebuah baris kalimat atau kata berdasarkan huruf yang terkandung sesuai dengan yang kita mau saja, ketikan [grep b. filename], maka akan tampil “by the seashore”, karena baris kalimat tersebut mengandung huruf b.
+
+
+Daily Report 16/08/2024
+1. Mempelajari Network Linux
+1. Di Linux, ada beberapa perintah dasar untuk mengecek dan mengkonfig jaringan. Beberapa command yang sering digunakan adalah:
+* ip a: untuk menampilkan ip address kita saat ini
+* ip r: untuk menampilkan routing table
+* ping: untuk mengetes jaringan dengan cara melakukan ping kepada dns atau address tertentu.
+* traceroute: digunakan untuk melacak rute paket jaringan kita ke network host.
+* netstat: untuk print atau menampilkan koneksi jaringan yang aktif, routing tables, statistik interfaces.
+* nmcli: berfungsi untuk mengelola NetworkManager dari command line.
+* iwconfig: digunakan untuk konfigurasi interface jaringan wi-fi. Ketikkan sudo iwconfig.
+* wget: untuk mengunduh file berdasarkan dari web menggunakan url.
+* ip route: untuk menampilkan table routing
+B. Text Editor 
+1. Text Editor secara sederhana adalah sebuah software yang digunakan untuk membuat, mengedit dan memanipulasi text file. Ada beberapa text editor yang terkenal dan sering digunakan yaitu:
+* Nano: teks editor yang sederhana dan simpel
+* Vim (V Improved): Vim merupakan versi lebih canggih dari teks editor Vi, memilik beberapa mode seperti mode normal, mode insert, dan mode command.
+* Emacs: merupakan teks editor yang dapat dikustomisasi dan memiliki antarmuka.
+2. Text Editor Vim: Beberapa basic penggunaan text editor Vim diantaranya:
+* Navigasi: untuk melakukan navigasi dapat dilakukan dengan menggunakan huruf HJKL. H seperti tombol panah ke kiri untuk berpindah satu karakter, L untuk seperti tombol panah ke kanan untuk berpindah satu karakter, J seperti tombol panah ke bawah untuk berpindah satu baris ke bawah, dan K seperti tombol panah ke atas untuk berpindah satu baris ke atas.
+3. Search pattern Vim: termasuk kemampuan untuk melakukan pencarian sebuah kata, berikut caranya:
+* (/): digunakan untuk mencari teks posisi saat ini ke depan dalam file, caranya dapat dilakukan dengan masuk ke dalam file teks lalu masuk ke mode normal dengan menekan ESC, kemudian ketikan (/) dibarengi dengan kalimat yang ingin dicari seperti [/example], maka akan memunculkan kata yang dicari mulai dari baris atas ke baris bawah. Gunakan n untuk berpindah. Konsep yang dimiliki mirip seperti CTRL + F pada Microsoft.
+* (?): memiliki konsep yang sama dengan (/) akan tetapi berkebalikan, ketika digunakan dengan mengetikan [?example]. 
+ C. Filesystem
+1. Membuat filesystem dengan mengetikan commandsudo [mkfs -t ext4 /dev/sdb2]
+Tool mkfs (make filesystem) memungkinkan untuk menentukan jenis sistem file yang kita inginkan dan di mana kita menginginkannya.
+
+
+Daily Report 19/08/2024
+1. VIM Text Editor
+1. Vim Apending Text
+* Pada VIM tidak dapat langsung mengetik atau mengedit, karena berada dalam command mode. Untuk bisa mengetik atau mengedit teks maka diperlukan untuk masuk ke mode insert terlebih dahulu.
+* i : insert untuk mengetik atau mengedit file
+* O : insert teks pada baris sebelumnya
+* o : insert teks pada baris selanjutnya
+* a : insert teks pada kursor selanjutnya
+* A : insert teks pada akhir baris/line
+* ESC : untuk keluar dari mode insert
+* : (titik dua) : untuk mengetikkan command
+* :wq! : (w) untuk simpan, (q) untuk quit/keluar, (!) untuk force edit.
+2. VIM Editing
+* x : untuk menghapus karakter 
+* dd : untuk menghapus baris saat ini kursor berada
+* y : copy satu karakter 
+* yy : copy satu line
+* p : paste
+3. VIM Saving & Exiting
+* :w : menyimpan file
+* :q : quit dari VIM
+* :wq : tulis dan quit
+* 
+
+
+
+B. Instalasi postgresql 12 dan Belajar basic query di W3school
+Menginstall development tools dan dependencies
+#sudo apt-get install build-essential libreadline-dev zlib1g-dev flex bison libxml2-dev libxslt-dev libssl-dev libxml2-utils xsltproc pkgconf ccache 
+Build-essential: paket meta di sistem berbasis Debian yang mencakup berbagai paket yang sangat penting untuk membangun perangkat lunak daris source code seperti GNU C++ compiler dan Make.
+Mendownload source code dari website postgresql
+Mendownload source code dari ftp postgresql dengan perintah wget(ini versi 12.16)
+#wget https://ftp.postgresql.org/pub/source/v12.16/postgresql-12.16.tar.gz
+Ekstrak tarball
+#tar xvfz postgresql-12.16.tar.gz
+
+
+Pindah ke direktori yang postgresql-12.16 dan buat direktori untuk penginstalan
+# cd postgresql-12.8
+# sudo mkdir -p /equnix/apps/12
+Compile dan arahkan kompliasi ke direktori yang sudah dibuat
+#./configure --prefix=/equnix/apps/12
+# make
+# make install
+
+
+Buat user pgsql
+#adduser pgsql
+Buat direktori untuk data dan write-ahead log(wal) dan set pemilik ke pgsql
+#sudo mkdir -p /equnix/data
+#sudo mkdir -p /equnix/wal
+#sudo chown -R pgsql. /equnix/data
+#sudo chown -R pgsql. /equnix/wal
+
+
+Tambahkan direktori /equnix/apps/12/bin ke variabel PATH
+#echo 'export PATH=$PATH:/equnix/apps/12/bin' >> ~/.bashrc
+Ganti ke user pgsql
+#su pgsql
+initialisasi PostgreSQL database cluster
+$/equnix/apps/12/bin/initdb -D /equnix/data -X /equnix/wal -U pgsql
+Pindah ke /equnix/data dan ganti nama pg_wal ke pg_wal_old
+$cd /equnix/data
+$mv pg_wal pg_wal_old
+Buat symlink ke /equnix/wal dan pindahkan isi pg_wal_old ke sana 
+$ln -s /equnix/wal pg_wal
+$mv pg_wal_old/* pg_wal
+$  rm pg_wal_old
+PIndah ke /equnix/apps/12/bin dan mulai postgresql
+$cd /equnix/apps/12/bin/
+$/equnix/apps/12/bin/pg_ctl -D /equnix/data/ -l /equnix/data/logfile start
+Masuk ke postgres
+/equnix/apps/12/bin/psql -U pgsql postgres -p 5432
+
+
+1. Apa itu PostgreSQL?
+* PostgreSQL adalah system database berbasis open-source yang mendukung query relational (SQL) dan non relational (JSON) queri.
+* PostgreSQL mendukung bahasa pemrograman:
+* Pyhton
+* Java
+* C/C++
+* C#
+* Node.js
+* Go
+* Ruby
+* Perl
+* Tcl
+2. Sejarah Postgresql
+* PostgreSQL dibuat di Departement Ilmu Komputer Berkeley, University Of California
+3. Connect to Database PostgreSQL
+* psql -U pgsql postgres: dengan command tersebut kita dapat langsung untuk masuk ke dalam database server postgresql.
+* default port 5432
+* cek versi postgresql dengan mengetikan query SELECT version();
+* semicolon harus disematkan disetiap akhir line untuk execute command.
+* beberapa perintah SQL tidak akan dieksekusi sebelum ditambahkan semicolon (;) titik koma. Misal mengetik 
+* postgres=# select
+* postgres-# version();
+* maka perintah tersebut akan dieksekusi meskipun terpisah, akan tetapi apabila tidak ada titik koma maka tidak akan di execute.
+4. Basic Query (Create Table)
+* Membuat table di psql: 
+* CREATE TABLE cars (
+* brand VARCHAR(255),
+* model VARCHAR(255),
+* year INT);
+* jika berhasil maka akan muncul display CREATE TABLE
+* untuk melihat table yang telah dibuat dapat dilakukan dengan mengetikan [SELECT * FROM cars; ]
+* pada saat membuat table kosong dengan 3 field yang terdiri dari: BRAND, MODEL, YEAR. Maka kita perlu memberi tipe data yang spesifik sesuai dengan yang kita inginkan, BRAND dan MODEL akan menampilkan nilai string maka pada saat membuat kita tambahkan VARCHAR (255), 255 adalah batas karakter yang kita inginkan. Sedangkan untuk YEAR maka kita harapkan akan menampilkan nilai integer (angka tanpa desimal), maka kita sisipkan kata kunci INT.
+* \dt : untuk menampilkan tabel apa saja yang telah ada.
+5. Basic Query (Insert Content Into Table)
+* Ketikan perintah berikut untuk insert konten:
+* INSERT INTO cars (brand, model, year)
+* VALUES (‘Ford’, ‘Mustang’, ‘1964’);
+* lalu tekan ENTER, kemudian jika muncul tampilan INSERT 0 1, maka artinya berhasil, 1 merupakan baris yang telah di insert.
+* Insert Multiple Table: dapat dilakukan dengan cara yang sama yaitu, 
+* INSERT INTO bikes (brand, model, cc)
+* values (‘Kawasaki’, ‘ZX10’, 1000),
+* (‘Kawasaki’, ‘ZX6R’, 636 ),
+* (‘Kawasaki’, ‘ZX25’, 250);
+6. Basic Query (Select Data, Specify Colums, Return ALL Colums)
+* Select Data: untuk melihat database yang disimpan, maka kita dapat menggunakan perintah SELECT
+* Specify Columns: kita dapat melihat kolom yang kita inginkan dengan mengetikan kolom spesifik dengan cara:
+* SELECT brand, year FROM cars;
+* Return ALL Coloms: untuk menampilkan semua kolom cukup menggunakan * diantara SELECT dan FROM.
+7. Basic Query (ALTER TABLE, ADD COLUMN).
+* ALTER TABLE: untuk menambah, menghapuse, dan mengedit ke tabel yang telah ada, maka kita perlu menggunakan perintah ALTER TABLE.
+* ADD COLUMN: untuk menambahkan kolom baru maka kita hannya perlu menggunakan perintah ADD COLUMN dengan cara:
+* ALTER TABLE (nama tabel)
+* ADD (nama kolom) varchar/int;
+8. Basic Query (Tipe Data)
+* VARCHAR: karakter 
+* INT: angka tanpa desimal
+* TEXT: karakter tanpa limit
+* SERIAL: generate otomatis uniq id
+* DATE: menambahkan tanggal secara manual, DATE DEFAULT CURRENT_DATE menambahkan tanggal hari ini. 
+* BIGINT: unutk bilangan bulat dengan rentang -9,223,372,036,854,775,808 hingga -9,223,372,036,854,775,808. 
+
+
+
+
+
+
+Daily Report 20/08/2024 
+1. Vacuum pada PostgreSQL
+* Vacuum adalah sebuah proses dari PostgreSQL yang digunakan untuk membersihkan ruang yang tidak terpakai dari tabel. PostgreSQL menggunakan mekanisme Multiversion Concurrency Control (MVCC), yang membuat salinan lama dari baris ketika ada perubahan (seperti update atau delete). Salinan lama ini tidak secara otomatis dihapus, sehingga bisa mengakibatkan pemborosan ruang disk. Ada 2 jenis vacum yaitu vacuum dan vacuum full:
+* Vacuum (Biasa): Membersihkan baris-baris yang tidak lagi digunakan dari table dan mengembalikan ruang kosong untuk digunakan oleh operasi insert/update berikutnya. Tetapi ruang kosong yang telah dibersihkan tidak dibebaskan kembali ke sistem operasi, tetapi di alokasikan untuk tabel di dalam PostgreSQL. Contoh: [vacuum nama_table;].
+* Vacuum Full: Membersihkan ruang kosong secara menyeluruh pada table. Digunakan untuk membebaskan ruang yang tidak dipakai kembali ke sistem operasi, sehingga ukuran file table menjadi lebih kecil. Contoh [vacuum nama_table;]
+* Vacuum Analyze: vacuum tersebut melakukan dua hal yaitu pertama membersihkan baris-baris yang tidak digunakan seperti vacuum biasa, dan kedua mengumpulkan statistik mengenai distribusi data dalam tabel. Statistik akan digunakan oleh PostgreSQL untuk membuat rencana eksekusi query yang lebih efisien. Contoh: [vacuum analyze nama_table;].
+* Auto-vacuum: fitur otomatis secara berkala untuk melakukan pada table yang membutuhkan pembersihan. Untuk menggunakan auto-vacuum dapat diatur melalui [postgresql.conf]
+
+
+2. PostgreSQL Pemahaman Singkat
+* PostgreSQL merupakan sebuah RDBMS (Relational Database Management System) yang menyimpan dan mengelola data dalam bentuk table. Table terdiri dari baris atau dikenal sebagai tuples, dan kolom. Relational berarti table tersebut dapat terhubung dengan table lain.
+* Query adalah sebuah perintah atau permintaan yang dikirim ke  database untuk mengambil, menambah, menghapus, atau memperbarui data.
+* Tipe Data pada PostgreSQL ada banyak dan bermacam-macam tergantung penggunaan yang dibutuhkan seperti INT, SERIAL, TIMESTAMP, VARCHAR.
+* Schemas secara singkat bagaikan sebuah region untuk mengatur database seperti tables, view, index, dan function.
+* Database pada PostgreSQL adalah sebuah penamaan dari beberapa data yang terdiri dari tables, indexes, viem, dan objects.
+* View adalah objek database yang memungkinkan untuk menyimpan hasil dari sebuah query SQL. View digunakan untuk menyederhanakan akses data dengan membuat sebuah virtual table yang memuat informasi yang diinginkan berdasarkan table acuan yang lain.
+* Index adalah struktur data yang digunakan untuk meningkatkan kecepatan operasi pencarian dan query pada table. Salah satu jenis Index adalah B-Tree, digunakan untuk pengoptimalan pencarian, pengurutan, dan pembandingan.
+* Trigger adalah mekanisme otomatis yang menjalankan sebuah perintah atau fungsi terhadap peristiwa tertentu.
+* Select digunakan untuk mengambil data dari satu tabel atau lebih di dalam database. Sintaks dasar penggunaan SELECT diantaranya:
+* SELECT column1, column2
+* FROM nama_table; 
+* Sintaks tersebut menampilkan nama kolom dari table yang diinginkan.
+* Menggunakan ‘WHERE’ untuk mencari data berdasarkan kondisi tertentu,  
+* SELECT column1, column2, ...
+* FROM table_name
+* WHERE genre = ‘Drama’;
+* Menggunakan ORDER BY untuk pengurutan
+* SELECT column1, column2, ...
+* FROM table_name
+* ORDER BY column_name [ASC|DESC];
+* ‘order by’ mengurutkan hasil berdasarkan kolom tertentu
+* ASC: mengurutkan berdasarkan nilai terendah ke tertinggi
+* DESC: mengurutkan berdasarkan nilai tertinggi ke terendah
+3. Locking pada PostgreSQL
+* Locking adalah mekanisme yang digunakan untuk mengontrol akses ke data dalam database oleh beberapa transaksi atau pengguna secara bersamaan. Ini bertujuan untuk mencegah konflik seperti race conditions, korupsi data, dan memastikan konsistensi data selama operasi yang melibatkan banyak transaksi.
+* Lock Levels dalam PostgreSQL
+* Row-Level Locking (Kunci Baris): untuk mengunci baris tertentu dalam tabel
+* Table-Level Locking (Kunci Table)
+
+
+Daily Report 21/08/2024
+1. Mempelajari PostgreSQL dengan Study Case
+1. Create User
+* CREATE USER librarian WITH password ‘strongpassword’;
+2. Create Database
+* CREATE DATABASE library_db OWNER librarian;
+3. Connect To Database
+* \c library_db
+4. Create Table Books
+* CREATE TABLE books (
+* book_id SERIAL PRIMARY KEY,
+* title VARCHAR(255) NOT NULL,
+* author VARCHAR(255) NOT NULL,
+* published_date DATE,
+* isbn VARCHAR(255) UNIQUE);
+5. Create Table Members
+* CREATE TABLE members (
+*     member_id SERIAL PRIMARY KEY,
+*     first_name VARCHAR(50) NOT NULL,
+*     last_name VARCHAR(50) NOT NULL,
+*     email VARCHAR(100) UNIQUE,
+*     join_date DATE DEFAULT CURRENT_DATE
+* );
+6. Create Table Loans
+* CREATE TABLE loans (
+*     loan_id SERIAL PRIMARY KEY,
+*     book_id INT REFERENCES books(book_id),
+*     member_id INT REFERENCES members(member_id),
+*     loan_date DATE DEFAULT CURRENT_DATE,
+*     return_date DATE
+* );
+7. Inser Data To books
+* INSERT INTO books (title, author, published_date, isbn) VALUES
+* ('The Great Gatsby', 'F. Scott Fitzgerald', '1925-04-10', '9780743273565'),
+* ('1984', 'George Orwell', '1949-06-08', '9780451524935'),
+* ('To Kill a Mockingbird', 'Harper Lee', '1960-07-11', '9780060935467');
+8. Insert Data Anggota
+* INSERT INTO members (first_name, last_name, email) VALUES
+* ('John', 'Doe', 'john.doe@example.com'),
+* ('Jane', 'Smith', 'jane.smith@example.com'),
+* ('Alice', 'Johnson', 'alice.johnson@example.com');
+9. Menampilkan Data dari Table books
+* SELECT * FROM books;
+10. Menampilkan Data dari Table members
+* SELECT * FROM members;
+11. Menampilkan Data dari Table loans
+* SELECT * FROM loans;
+12. Menampilkan Data buku yang sedang dipinjam dari Table books & members sehingga tampil di Table loans
+* SELECT b.title, m.first_name, m.last_name, l.loan_date
+* FROM loans l
+* JOIN books b ON l.book_id = b.book_id
+* JOIN members m ON l.member_id = m.member_id
+* WHERE l.return_date IS NULL;
+13. Mengupdate Data Table books.
+* UPDATE books
+* SET title = 'The Great Gatsby: Revised Edition'
+* WHERE book_id = 1;
+14. Mengupdate Data Table members.
+* UPDATE members
+* SET email = 'new.email@example.com'
+* WHERE member_id = 2;
+15. Menghapus Data.
+* DELETE FROM books
+* WHERE book_id = 3;
+16. Menghapus Data.
+* DELETE FROM members
+* WHERE member_id = 3;
+
+
+Daily Report 22/08/2024
+1. Memindahkan /equnix/data ke partisi baru /mnt/data
+1. Pindahkan owner dari /mnt ke pgsql (user yang digunakan) menggunakan sudo chown -R pgsql./mnt
+2. Selanjutnya ubah permissions /mnt/data ke 700 (rwx—---) dengan mneggunakan sudo chmod 700 /mnt/data
+3. Masuk ke user pgsql
+4. Selanjutnya pindahkan seluruh data dari /equnix/data ke partisi baru /mnt/data dengan menggunakan mv /equnix/data/* /mnt/data
+5. Setelah berhasil hapus data yang ada di /equnix/data menggunakan sudo rm -r /equnix/data
+6. Buat symlink antara /mnt/data dengan /equnix/data dengan menggunakan
+7. sudo ln -s /mnt/data /equnix/data cek symlink dengan menggunakan ls -l /equnix/
+8. Jalankan pg_ctl dengan menggunakan /equnix/apps/12/bin/pg_ctl -D /equnix/data start
+9. Mengatur variabel PATH misal PATH=$PATH:/equnix/data/apps/12/bin jangan lupa source.bashrc Tools monitoring network
+10. Crontab Fields
+    B. Konfigurasi Replication Postgresql di lingkungan VM
+1. Pertama di VM tambahkan terlebih dahulu NAT Network di tools > Network Manager kemudian aktifkan terlebih dahulu network adapter ke-2 menggunakan nat. setup network interface terlebih dahulu menggunakan vim /etc/network/interface
+2. Install rsync menggunakan sudo apt install rsync
+3. Siapkan beberapa direktori untuk menyimpan beberapa file
+* /equnix/scripts
+* /equnix/scripts/backup
+* /equnix/scripts/ha
+* /equnix/scripst/logs
+change owner direktori /equnix/scripts ke user pgsql menggunakan sudo chown pgsql. /equnix/scripts/*
+siapkan file equ_dbresync.sh simpan di /equnix/scripst/backup
+siapkan file conf.d yang berisi
+01_eqnx_connections.conf
+02_eqnx_resources.conf
+03_eqnx_replications.conf
+04_eqnx_logs.conf  
+05_eqnx_vacuums.conf
+06_eqnx_archives.conf
+07_eqnx_ssl.conf
+Simpan di /equnix/data/conf.d
+lakukan konfigurasi di /equnix
+
+
+uncomment pada include_dir dan isi dengan ‘conf.d’ atau isi dimana file.conf.d tersebut (full path). gunakan vim /equnix/data/postgresql.conf
+
+
+siapkan /etc/init.dpostgresql.sh menggunakan sudo vim /etc/ini.d/postgresql.sh
+
+
+buat dan isi file di /equnix/data/.pgpass menggunakan vim /equnix/scripst/.pgpass isi dengan format ip:port naam_db:user:password sebanyak 2 (ip sendiri dan ip untuk replication) Misal
+
+
+10.0.2.14:5432:postgres:pgsql:pgsql  (IP sendiri)
+10.0.2.15:5432:postgres:pgsql:pgsql  (IP replication)
+
+
+lalu simpan.
+ubah permissions dari /equnix/scripts/.pgpass ke 600
+
+
+masuk ke /equnix/data/conf.d/03_eqnx_replications.conf menggunakan 
+vim /equnix/data/conf.d/03_eqnx_replications.conf
+
+
+perhatikan primary_conninfo pastikan host sesuai dengan /etc/hosts jika belum ada atau belum sesuai masukan Ip master dan Ip replication. Untuk Ip master beri nama node1 sedangkan ip replication beri nama node2.
+
+
+selanjutnya jalankan ssh-keygen
+kemudian ssh-copy-id -i .ssh/id_rsa.pub pgsql@10.0.2.15 atau pgsql@node2 
+
+
+selanjutnya buka pg_hba dengan vim /equnix/data/pg_hba.conf 
+konfigurasi dibagian replication. Isi dengan 
+
+
+host        replication        pgsql        10.0.2.15/32         trust
+host        potsgres        pgsql        10.0.2.15/32        trust
+
+
+selanjutnya konfigurasi file /equnix/scripts/backup/equ_dbresync.sh 
+
+
+nonaktifkan VIP (karena belum buat)
+perhatikan PGPASSFILE 
+perhatikan /etc/init.d/postgresql.sh, simpan
+
+
+selanjutnya jalankan script tersebut
+
+
+C. Setup HA (High Availability)
+
+
+1. Persiapan
+* masuk ke msaster di user pgsql
+* ketik sudo apt instal pcs corosync pacemaker
+* HA scripcdts dimasukan ke dalam node1 dan node2 dan symlinked di /etc/init.d/
+
+
+
+
+Daily Report 23/08/2024
+
+
+
+
+Instalasi pgBadger 
+
+
+pertama download terlebih dahulu melalui repostori https://github.com/darold/pgbadger/archive/refs/tags/v12.0.tar.gz menggunakan 
+wget https://github.com/darold/pgbadger/archive/refs/tags/v12.0.tar.gz -O pgbadger.tar.gz 
+
+
+selanjutnya extrct file dengan menggunakan tar -xzf pgbadger.tar.gz
+
+
+masuk ke direktori tsb cd pgbadger-12.0
+
+
+copy pgbadger ke /usr/local/bin/ menggunakan sudo cp pgbadger /usr/local/bin/
+
+
+ubah permissions folder /usr/local/bin/pgbadger dengan menggunakan sudo chmod +x /usr/local/bin/pgbadger
+
+
+cek dengan menggunakan pgbadger - -version
+
+
+
+
+selanjutnya cek menggunakan pdbadger –version
+
+
+jangan lupa configurasi di /equnix/data/conf.d/04…. 
+
+
+restart database menggunakan sudo /etc/init.d/postgresql.sh restart
+
+
+untuk membuat 
+
+
+masuk ke direktori /equnix/data/log
+
+
+sudo pgbadger postgresql-* -o report.html
+
+
+
+
+
+
+POSTGRESQL
+
+
+\d
+\dt
+\du = user
+\c = melihat sebagai siapa dan terkoneksi ke database mana
+\c - {nama role}; ganti user database
+\c [nama database]; ganti database yang dipakai
+
+
+/e        
+
+
+less logfile
+
+
+psql -U pgsql postgres untuk masuk ke postgres
+
+
+ grant select on table table_lain to dian;
+ grant usage on table table_lain to dian;
+
+
+membuat logical replication di Postgresql
+
+
+siapkan VM yang sudah terinstall postgresql
+
+
+selanjutnya config pg_hba di /equnix/data/pg_hba.conf masukan ip logical replication untuk kedua node
+
+
+selanjutnya configuration di vm untuk dijadikan target logical replication. Config postgresql.conf di /equnix/data/postgresql.conf menggunakan sudo vim /equnix/data/postgresql.conf dan sesuaikan beberap hal ini
+        listen_addresses = ‘*’
+        wal_level = logical
+        arc
+
+
+restart db dengan menggunakan sudo /etc/inid.d/postgresql.sh restart
+
+
+selanjutnya masuk ke postgresql pada master server psql -U pgsql postgres (pakai user ataupun nama database yang akan di logical replication)
+ 
+buat publication
+
+
+create publication nama_publication for table nama_tabel;
+
+
+cek menggunakan select * from pg_publication_tables; pastikan publication yang sudah kita buat muncul pada tabel pg_publication tersebut.
+
+
+selanjutnya masuk ke potsgresql pada server target (server yang dijadikan logical replication) psql -U pgsql postgres
+
+
+buat subscription 
+
+
+create subscription nama_subcription connection ‘host=ip_master port=port_yangdipakai dbname=nama_database user=user password=passwd’ publication nama_publication;
+
+
+selanjutnya restart db
+
+
+coba untuk insert ataupun update 
+
+
+setup HA di lingkungan VM
+
+
+Beberapa hal yang perlu disiapkan sebelum masuk ke konfigurasi HA sebagai berikut.
+1. Pastikan database sudah terkonfigurasi replication
+2. Instal beberapa aplikasi pcsd, corosuny, pacemaker diantara 2 server yang akan dikonfigurasi
+3. Selanjutnya buatkan symlink menggunakan sudo ln -s /equnix/scripts/ha/* /etc/init.d
+4. Install iptables-persistent untuk membuka beberapa port. Buka port 5404 dan 5405 dengan menggunakan sudo iptables -A INPUT -p udp --dport 5404 -j ACCEPT dan sudo iptables -A INPUT -p udp --dport 5405 -j ACCEPT. Lalu buka port 2224 tcp dengan sudo iptables -A INPUT -p tcp --dport 2224 -j ACCEPT. 
+5. Cek menggunakan sudo iptables -L -v -n pastikan port tersrbut sudah terbuka
+6. Selanjutnya edit sudoers dengan sudo vim /etc/sudoers tambahkan pgsql ALL = NOPASSWD: /equnix/scripts/ha/equ_exec_failover.sh, /usr/bin/docker, /usr/bin/less, /usr/sbin/ip, /usr/bin/kill, /usr/sbin/crm_mon, /usr/sbin/pcs, /usr/bin/netstat
+7.  start pcsd service dengan menggunakan sudo systemctl start pcsd
+8. ubah password user hacluster dengan sudo psswd hacluster dengan hacluster 
+9. selanjutnya sudo pcs host auth node1 node2
+10. masukan username dan password hacluster.
+11. selanjutnya sudo cluster setup Equnix_Group node1 node2
+12. kemudian start cluster dengan sudo pcs cluster start
+13. coba sinkronisasi cluster dengan menggunakan sudo pcs cluster sync
+14. kemudian reload claster dengan menggunakan sudo pcs cluster reload corosync
+15. disable stonith pada pacemaker dengan menggunakan sudo pcs property set stonith-enable=false
+16. set quorum policy ti ignore di pacemaker dengan menggunakan sudo pcs property set no-quorum-policy=ignore
+17. selanjutnya set resource dengan menggunakan  
+
+
+sudo pcs resource create equ_forced_failover lsb:equ_forced_failover.sh --group Equnix_Group
+sudo pcs resource create public_vip ocf:heartbeat:IPaddr2 ip=192.168.8.100 --group Equnix_Group
+sudo pcs resource create equ_db_check lsb:equ_db_check.sh op monitor interval=5s --group Equnix_Group
+sudo pcs resource create pingpub ocf:pacemaker:ping host_list=192.168.8.1 attempts=3 dampen=5s multiplier=1000 op monitor interval=”1s” clone
+sudo pcs constraint location public_vip rule score=-INFINITY pingd lt 1 or not_defined pingd
+
+
+
+
+18. nsbh
+
+
+
+
+
+
+
+
+
+
+RDBMS
+
+
+Relational Database Management System - database software yang menyimpan berbagai data dalam format tabel yang saling berhubungan. 
+
+
+
+
+
+
+POSTGRESQL
+
+
+
+
+RDBMS Concept
+
+
+ACID (Automicity, Consistency, Isolation, Durability)
+
+
+Atomicity         :        semua transaksi harus berhasil, jika ada transaksi yang gagal maka 
+                        harus gagal semua.  Ada commit dan rollback. 
+Consistency         :        semua transaksi konsisten, jadi dari awal transaksi dan akhir 
+                        transaksi sesuai aturan dan nilainya konsisten.
+
+
+Isolation        :         memastikan bahwa transaksi berjalan dengan terisolasi dan tidak 
+                        tercampur dengan transaksi lain.        
+Durability        :         bahwa transaksi yang dilakukan akan tetap ada, jika terjadi kegagalan 
+                        sistem maka sistem akan melakukan proses mekanisme seperti 
+                        logging. 
+
+
+
+
+
+
+Tipe data
+beberapa tipe data yang ada di Postgresql diantaranya:
+numeric types
+beberapa tipe data untuk angka diantaranya:
+integer (int) : bilangan bulat standar sebanyak 4 byte
+smallint : bilangan bulay kecil sebanyak 2 byte
+bigint : bilangan bulat besar sebanyak 8 byte
+decimal / numeric : angka dengan presisi yang tinggi
+real : floating number sebanyak 4 byte
+serial : tipe integer auto-increment untuk primay key
+
+
+character types
+digunakan untuk menyimpan data teks
+varchar(n) : menyimpan string dengan panjang maksimum n. Jika panjang string melebihi n maka akan dipotong. 
+char(n) : menyimpan string dengan panjang tetap. Jika data yang dimasukan kurang dari n maka data akan diisi dengan spasi
+text : string tanpa batas panjang. 
+date/time types
+digunakan untuk menyimpan data tanggal wan waktu
+date : menyimpan tanggal tanpa informasi waktu (YYYY-MM-DD)
+time : menyimpan waktu tanpa informasi tanggal (HH:MI)
+timestamp : menyimpan kombinasi tanggal dan waktu
+timestamptz : kombinasi tanggal waktu dengan zona waktu
+interval : menyimpan periode waktu misal 1 year, 5 days
+boolean type
+digunakan untuk menyimpan data boolean
+boolean : menyimpan nilai logika true dan false
+null : untuk menyimpan data kosong
+
+
+UUID
+digunakan untuk menyimpan identifier unik
+
+
+array
+digunakan untuk menyimpan array satu kolom
+integer[]
+text[]
+
+
+Create a table
+digunakan untuk membuat tabel baru. setiap ingin menambahkan tabel baru, sertakan jenis data yang akan disimpan di setiap kolomnya. misal:
+
+
+create table user (user_id serial primary key, username varchar(100) not null, email varchar(255) unique not null, created_at timestamp default 
+
+
+Constraints
+not null : tidak boleh kosong
+unique : nilai dalam kolom harus unik dan tidak boleh ada duplikat
+primary key : gabungan dari not null dan unique. digunakan untuk mengidentifikasi row secara unik. 
+
+
+CREATE TABLE orders (
+    order_id serial PRIMARY KEY,
+    order_date date NOT NULL
+);
+
+
+check : digunakan untuk memastikan nilai memenuhi dalam kondisi tertentu
+
+
+    CREATE TABLE employees (
+    employee_id serial PRIMARY KEY,
+    salary numeric CHECK (salary > 0)
+);
+
+
+foreign key : merupakan primary key dari tabel lain untuk digunakan sebagai relasi antar 
+tabel. berfungsi untuk memastikan bahwa nilai yang diinput harus ada di kolom pada tabel yang direlasikan. misal 
+CREATE TABLE orders (
+    order_id serial PRIMARY KEY,
+    customer_id int REFERENCES customers (customer_id)
+);
+artinya kolom customer_id harus disi dengan angka yang ada pada kolom customer_id pada tabel customers
+select into dan create table as
+membuat tabel baru berdasarkan tabel lain menggunakna create table member_copy as table members;
+
+
+select * into table from members where member_id < 100; membuat tabel baru berd 
+Queryng data
+menggunakan select 
+
+
+Digunakan untuk melakukan queryng data. 
+select select_list from table_name;
+
+
+misal select loan_id from table loans; atau select * from table loans;
+
+
+menggunakan distinct operator
+select distinct digunakan untuk menghapus duplicate rows dari kumpulan hasil. Jadi fungsi ini hanya menampilkan satu baris untuk setiap baris yang duplicat.
+
+
+misal 
+
+
+select distinct column1, column 2 from table_name;
+
+
+contoh select distinct * from table loans; 
+
+
+menggunakan order by operator 
+digunakan untuk mengurutkan baris dalam urutan ASC atau DESC berdasarkan ekspresi tertentu. ASC dari a ke z atau 1 ke 9 dan DESC dari z ke a atau 9 ke 1. 
+
+
+misal ingin mengurutkan kolom first_name dalam tabel members berdasarkan panjang string maka select first_name, last_name, length(first_name) len_frist, length(last_name) len-last from members order by len_frist asc;
+
+
+menggunakan kolom alias (column aliases)
+digunakan untuk menetapkan select sementara pada kolom atau ekpresi tertentu. misal ingin menggabungkan kolom first_name dan last_name dengan diberi nama full_name 
+misal select member_id as "No", first_name as "Nama Depan", last_name as "Nama Belakang", first_name || ' ' || last_name as "Nama Lengkap" from members order by member_id;
+Filtering data
+menggunakan where
+
+
+ digunakan untuk memuat data yang memenuhi kondisi tertentu. contoh
+
+
+SELECT 
+        select_list
+FROM
+        table_name
+WHERE
+        condition
+ORDER BY
+        sort_expressions;
+
+
+
+
+bisa menggunakan operator IN untuk memeriksa apakah nama_kolom salah satu dari values yang dicari. misal 
+select first_name, last_name, join_date from members where join_date < ‘2024-08-05’ or first_name in (‘Sarah’, ‘Sophia’);
+menggunakan LIMIT dan OFFSET klausa
+limit digunakan untuk membatasi result misal dari 100 rows hanya ingin menampilkan 10 rows maka menggunakan limit. contoh select * from members limit 10;
+sedangkan untuk offset digunakan untuk memulai data dari ke-berapa sampai ke limit. Misalnya limit 10 dengan offset 5 maka akan ditampilkan data ke 6 sampai ke 15. 
+struktur select * from nama_tabel order by nama_kolom limit angka offset angka;
+
+
+Contoh select * from members order by member_id limit 20 offset 5; maka akan tampil data dengan id 6 sampai id 15 
+menggunakan kalusa between
+digunakan untuk mencari data diantara operation. Misalnya diantara tanggal sekian sampai tanggal sekian. Contoh
+select *  from members where join_date between ‘2024-08-02’ and ‘2024-08-03’ order by member_id;
+menggunakan kalusa fetch 
+digunakan untuk memilih baris ke-n pertama. Misal ingin melihat row 1 sampai 5 maka
+select * from members order by member_id fetch first 5 row only;
+
+
+Join tables
+menggunakan table aliases dan inner join
+digunakan untuk menggunakan nama sementara pada suatu tabel selama eksekusi kueri. misalnya ingin mendefinisikan nama_tabel menjadi nama_alias 
+
+
+select m.first_name from members as m order by m.member_id limit 10
+
+
+misal ingin membuat result yang dimiliki oleh dua tabel maka seperti ini
+
+
+SELECT m.first_name, l.book_id, b.title FROM members m INNER JOIN loans l ON m.member_id = l.member_id INNER JOIN books b ON l.book_id = b.book_id
+ORDER BY l.loan_id LIMIT 10;
+
+
+
+
+select count (*) from members m inner join loans l on m.member_id = l.member_id inner join books b on l.book_id = b.book_id where l.return_date is null;
+
+
+Grouping tables
+menggunakan group by
+digunakan untuk mengelompokan baris yang memiliki nilai yang sama dalam kolom tertentu. misal ingin mengetahui berapa banyak members yang memiliki first_name yang sama maka gunakan select first_name, count (*) as total from members group by first_name;
+
+
+atau misal ingin melihat duplikasi data first_name dan last_name yang sama dan diurutkan berdasarkan jumlah duplikasi menggunakan select first_name, last_name, count (*) as total from members gorup by first_name, last_name order by total asc;
+
+
+atau misal ingin melihat banyaknya nama depan yang memiliki nama belakang yang sama gunakan select first_name, last_name, count (*) as total from members where last_name = 'Lastname 168' group by first_name, last_name order by total asc;
+
+
+menggunakan having
+digunakan untuk memfilter kelompok yang dihasilkan oleh group by berdasarkan kondisi tertentu. misal ingin menampilkan kelompok dengan jumlah first_name lebih dari satu menggunakan SELECT first_name, COUNT(*) AS total FROM members
+GROUP BY first_name  HAVING COUNT(*) > 1 order by total desc;
+
+
+atau ingin menampilkan kelompok dengan first_name dan last_name yang memiliki jumlah lebih dari 1 menggunakan SELECT first_name, last_name, COUNT(*) AS total FROM members GROUP BY first_name, last_name HAVING COUNT(*) > 1 order by total desc;
+
+
+Modifying data
+insert single row
+digunakan untuk menambahkan satu baris dalam tabel. misal ingin menambahkan data ke tabel members maka insert into members (first_name, last_name, email) values (‘Rahadian’, ‘Ilham’, ‘rahadian.iam@gmail.com’);
+insert multi row
+digunakan untuk menambahkan beberapa baris dalam tabel, misal ingin menambahkan data ke tabel members maka 
+insert into members (first_name, last_name, email) 
+values
+(‘Rahadian’, ‘Ilham’, ‘rahadian.iam@gmail.com’),
+(‘Rahadian’, ‘Aji’, ‘rahadian.aji@gmail.com’),
+(‘Rahadian’, ‘ilham’, ‘rahadian.iam27@gmail.com’);
+update existing data
+digunakan untuk mengupdate data yang ada dalam tabel berdasarkan kondisi tertentu. misal ingin mengupdate nama depan menjadi ‘Aan’ jika member id sama dengan 133975
+update members set first_name = 'Aan' where member_id = 133975; 
+update join
+digunakan untuk mengupdate data yang ada dalam tabel berdasarkan nilai dari tabel lain. 
+
+
+misal ingin mengupdate data pada tabel members_old berdasarkan nilai yang ada pada tabel members 
+
+
+maka update members_old set first_name = members.first_name from members where members_old.member_id = members.member_id;
+
+
+dimana
+update members_old
+	menunjukan tabel yang akan diperbarui datanya
+	set first_name = members.first_name
+	mengatur kolom yang akan diperbaruin berdasarkan nilai dari tabel members
+	from members
+	menunjukan tabel yang digunakan untuk mendapatkan nilai perubahan
+	where member_old.member_id = members.member_id
+	menentukan kondisi untuk menggabungkan baris antara tabel members_old dengan tabel members
+	
+
+delete
+digunakan untuk menghapus data dari tabel 
+
+
+misal ingin menghapus data dari tabel members berdasarkan nilai member_id menggunakan delete from members where member_id = 133975;
+Monitoring server dan postgresql
+menggunakan top
+
+
+top digunakan untuk menampilkan proses yang berjalan di sistem seperti CPU usage, memory usage, uptime. 
+
+
+untuk masuk ke top menggunakan syntax top
+
+
+kemudian shift+p untuk mengurutkan proses berdasarkan CPU usage
+kemudian shift+M untuk mengurutkan proses berdasarkan memori usage
+tekan q untuk keluar
+menggunakan htop 
+
+
+htop sama dengan top namun tampilannya lebih friendly dan menarik. 
+
+
+untuk masuk ke htop menggunakan syntax htop
+
+
+F5 untuk tree view
+F6 untuk memilih urutan proses
+
+
+menggunakan iostat
+
+
+digunakan untuk menampilkan sttaistik CPU usage (idle, system, user timr) dan juga statistik dari disk. 
+
+
+gunakan iostat -x -y (x : interval dan y : iterasi)
+kemudian gunakan iostat -d 1 –human untuk menampilkan I/O disk dengan output yang lebih human friendly.
+
+
+
+
+menggunakan pg_activity
+digunakan untuk memonitoring postgresql menampilkan berbagai aktivitas database secara realtime.
+gunakan pg_activity -U username -h hostname -d database -p portnumber
+
+
+gunakan 
+
+
+r: Mengurutkan berdasarkan CPU usage.
+c: Filter berdasarkan client address.
+q: Keluar dari pg_activity.
+k: Membunuh proses tertentu.
+S: Mengaktifkan mode superuser untuk melihat query dari semua user.
+F: Memfilter query berdasarkan teks tertentu.
+
+
+
+
+Melakukan benchmark 
+
+
+benchmarking dilakukan menggunakan pgbench
+
+
+buatkan database baru untuk melakukan benchmark. 
+
+
+lalu pgbench -i -s 50 pgbench_db 
+
+
+-s merupakan scale (faktor skala), semakin besar scale maka semaki besar juga jumlah data yang dimasukan
+
+
+database pgbench_db
+
+
+cek penggunaan CPU, RAM dan Memory ketika melakukan inisiasi database. 
+
+
+Selanjutnya menjalankan benchmark menggunakan
+
+
+pgbench -c 100 -j 2 -T 120 pgbench_db
+
+
+-c 100 menentukan jumlah klien yang digunakan dalam pengujian (misalnya, 100 klien).
+-j 2 menentukan jumlah thread yang digunakan oleh pgbench (misalnya, 2 thread).
+-T 120 menentukan durasi pengujian dalam detik (misalnya, 120 detik).
+
+
+ketika melakukan benchmark lihat CPU usage, memory dan I/O yang terjadi. Kemudian hasil benchmark seperti ini.
+
+
+
+
+transaction type: <builtin: TPC-B (sort of)>
+scaling factor: 50
+query mode: simple
+number of clients: 100
+number of threads: 2
+duration: 120 s
+number of transactions actually processed: 108312
+latency average = 111.133 ms
+tps = 899.824518 (including connections establishing)
+tps = 899.933886 (excluding connections establishing)
+
+
+keterangan 
+
+
+transaction type: Tipe transaksi yang digunakan dalam pengujian.
+scaling factor: Skala database yang digunakan.
+number of clients: Jumlah klien yang terhubung dan melakukan transaksi.
+number of threads: Jumlah thread yang digunakan oleh pgbench.
+duration: Durasi pengujian.
+number of transactions actually processed: Jumlah total transaksi yang berhasil diproses selama pengujian.
+latency average: Waktu rata-rata yang dibutuhkan untuk menyelesaikan satu transaksi.
+tps (including connections establishing): Jumlah transaksi per detik termasuk waktu untuk membangun koneksi.
+tps (excluding connections establishing): Jumlah transaksi per detik tanpa memperhitungkan waktu untuk membangun koneksi.
+
+
+
+
+digunakan untuk 
+update nama_tabel set apa_field = ‘apa_pokoknya‘ where member_id = 1; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+UNIX dan LINUX
+
+
+OS jaman dahulu 
+
+
+UNIX 
+
+
+Linus Torvalds merupakan deleoper Linux 
+
+
+UNIX > Minix > Linux
+
+
+Linux Kernel
+GNU
+Software packgae managemen
+
+
+GNU – OS yang free software 
+GNU/Linux
+
+
+Linux dipakai oleh hampir sebagian besar server di dunia menggunakan Linux
+
+
+Arsitektur Linux
+
+
+Hardware – Kernel – Shell - Aplication/Utilities 
+
+
+Shell untuk berkomunikasi dengan kernel
+
+
+Kernel merupakan core dari OS
+
+
+PELAJARI BOOT DI LINUX NGAPAIN AJA
+
+
+C
+
+
+arch
+
+
+opensuse
+
+
+openbsd
+
+
+repository 
+
+
+remote code execution 
+
+
+skynet 
+
+
+
+
+
+
+Kernel adalah landasan untuk sebuah sistem operasi atau OS (Operational System). 
+
+
+Sistem ini menjadi lapisan penghubung antara perangkat keras dari komputer dengan OS yang bekerja di dalamnya. 
+
+
+Tugas utama dari Kernel adalah untuk mendorong kerja hardware untuk menjalankan aplikasi dan OS, lalu memuatnya ke dalam memori utama. 
+
+
+Sistem ini mendorong kerja hardware dengan cara mengelola sistem dalam memory management, process dan task management. Selain itu Kernel ini juga bekerja dalam pengelolaan disk management. 
+
+
+
+
+Mekanisme Vacuum di Postgresql
+
+
+Vacuum merupakan proses pemeliharaan dalam Postgresql. Tanpa mekanisme ini database bisa mengalami pembengkakan ukuran dan kinerja yang menurun. 
+
+
+MVCC (Multiversion Concurrency Control): Postgre menggunakan MVCC sehingga dapat melakukan beberapa transaksi secara bersamaan. MVCC ini menyimpan banyak versi dari rows selama transaksi berlangsung. Ketika row diubah, versi lama disimpan untuk memastikan transaksi lain yang memerlukan versi lama tetap dapat mengaksesnya. 
+
+
+Tuples dead: merupakan mekanisme ketika sebuah transaksi menghapus atau memperbarui row, maka row lama tidak langsung dihapus di disk. Namun baris tersebut menjadi dead atau usang sehingga tidak lagi diperlukan setelah transaksi selesai. Mekanisme vacuum inilah yang diperlukan untuk menghapus baris tersebut dari tabel.
+
+
+Mekanisme pembersihan:
+1. Vacuum standar hanya membersihkan baris yang usang namun tidak mengembalikan ruang kosong ke OS. Namun sebagai gantinya ruang kosong tetap ada dan bisa digunakan kembali untuk transaksi berikutnya. 
+2. Vacuum full, mengompakkan tabel dengan menyalin data ke lokasi baru, menghapus ruang kosong juga mengurangi ukuran tabel. Namun proses ini berjalan lebih lambat dan membutuhkan lock ekslusif pada tabel. 
+Autovacuum : 
+
+
+Postgresql memiliki daemon autovacum yang bisa berjalan di latar belakang. Secara otomatis melakukan vacuum dan nalyze berdasarkan akitivitas di tabel. 
+
+
+Konfigurasi autovauum melaui postgresql.conf atau /equnix/data/conf.d/05_eqnx_vacuums.conf
+
+
+Kelebihan dan kekurangan vacuum full
+kelebihan : 
+1. mengurangi ukuran fisik dari tabel dan indkes secara signifikan
+2. meningkatkan kinerja query dengan mengurangi fragmentasi
+kekurangan : 
+1. memerlukan lock ekslusif yang dapat menghalangi semua orasi lain pada tabe; selama proses berlangsung
+2. proses yang lambat dan memerlukan sumber daya dibandingkan dengan vacuum standar.
+Locking dan Blocking Tabel
+Locking tabel
+Jenis lock di Postgresql
+1. Access share lock, digunakan oleh perintah select. Lock ini memungkinkan transaksi lain untuk melakukan select dan insert namun tidak mengizinkan operasi untuk mengubah struktur tabel seperti alter table
+2. Row exclusive lock, diterapkan oleh perintah DML seperti insert, update dan delete. Lock ini membatasi transaksi lain untuk melakukan operasi DDL dan Select for update pada baris yang sama namun tetap bisa menggunakan select biasa.
+3. Share lock, diperlukan oleh select for update dan select for share. Lock ini memungkinkan transaksi lain untuk membaca baris yang sama tetapi tidak mengizinkan perubahan pada baris tersebut hingga lock dilepaskan. 
+4. Exclusive lock, diperlukan oleh perintah DDL seperti Alter table, Drop table dan operasi lain yang mengunggah struktur tabel. Lock ini membatasi akses seluruh tabel untuk transaksi lain. 
+
+
+Level locking
+1. Row-level locking, mengunci baris secara individual dalam tabel sehingga memungkinka transaksi lain untuk mengakses bari lain dalam tabel yang sama tanpa mengganguu operasi yang sedah berlangsung pada baris yang terkunci. 
+mekanisme ini digunakan untuk memastikan bahwa operasi DML (seperti update, delete, dan insert) pada baris tertentu tidak akan mempengaruhi operasi lain pada baris yang berbeda.
+
+
+jenis lock Row level:
+
+
+1. Row exclusive lock : diperoleh oleh DML seperti insert, update dan delete. Lock ini mencegah transaksi lain melakukan update, delete atau select for update pada baris yang sama. Namun tidak memblokir select biasa.
+2. Share row exclusive lock : diperoleh oleh perintah select for update dan select for share. Lock ini memungkinkan transaksi lain untuk membaca baris yang sama tetapi tidak mengizinkan perubahan pada baris tersebut hingga lock dilepaskan.
+        kelebihan : mengurangi kontensi karena hanya baris yang sedang dioperasikan yang
+                        dikunci
+        kekurangan : Lebih kompleks dalam manajemen karena harus memastikan bahwa 
+                        transaksi mengelola baris yang terkunci dengan benar, yang dapat 
+                        menyebabkan masalah seperti deadlock jika tidak dikelola dengan 
+                        baik.
+
+
+
+
+2. Table level locking, mengunci seluruh tabel. ini membatasi akses ke seluruh tabel oleh transaksi lain. Biasanya digunakan untuk operasi DDL yang mengubah struktur tabel. 
+
+
+        jenis lock table-level : 
+
+
+1. Access share lock, digunakan ketika perintah select. Lock ini memungkinkan transaksi lain untuk melakukan operasi select dan insert tetapi tidak mengizinkan operasi yang mengubah struktur tabel seperti alter table
+2. Row share lock, digunakan ketika perintah select for update yang mengunci baris tetapi membatasi akses lain ke tabel yang lebih besar. Contoh diterapkan pada operasi yang membaca baris dengan niat memperbarui.
+3. Row exclusive lock. digunakan ketika perintah DML seperti insert, update, dan delete. Lock ini lebih kuat dibanding dengan row share lock dan menghindari perubahan struktur tabel selama transkasi berlangsung.
+Blocking tabel
+1. Blocking, terjadi ketika sebuah transaksi harus menunggu lock yang dipegang oleh transaksi lain. Misal, jika transaksi A memegang row exlusive lock dan transaksi B mencoba melaukan alter. Maka transaksi B diblokir hingga transaksi A seleai. 
+2. Deadlcok, terjadi ketika dua atau lebih transaksi saling menunggu lock yang dipegang satu sama lain dan menciptakan siklus ketergantungan yang tidak bisa diselesikan. 
+
+
+Monitoring blocking
+1. menggunakan pg_stat_activity : menampilkan informasi tentang aktivitas transaksi saat ini. bisa melihat transaksi yang sedang berjalan dan status lock. select pid, usename, state, query from pg_stat_activity;
+2. menggunakan pg_locks : menampilkan detail tentang lock yang sedang dipegang atau diminta oleh transaksi. select pid, mode, relation::regclass, page, tuple, virtualxid, transactionid, classid, objid, objsubid from pg_locks left join pg_stat_activity on pg_locks.pid = pg_stat_activity.pid;
+
+
+
+
+MEMBACA DATA YANG MUNCUL DI PG-ACTIVITY
+
+
+Data yang umumnya muncul saat menjalankan pg-activitiy adalah:
+1. Global:
+* 29 minutes uptime: Server PostgreSQL sudah berjalan selama 29 menit.
+* 348.57M dbs size: Ukuran total basis data di server ini adalah 348.57 MB.
+* 85.21K/s growth: Ukuran basis data bertambah sebesar 85.21 KB per detik.
+* 96.63% cache hit ratio: Sebanyak 96.63% query mengambil data dari cache, yang menandakan kinerja yang efisien.
+2. Sessions:
+* 46/5000 total: Ada 46 sesi yang sedang aktif dari total 5000 sesi yang diizinkan.
+* 31 active: 31 sesi sedang aktif dan melakukan query atau operasi.
+* 7 idle: Ada 7 sesi yang menganggur tetapi tetap terhubung ke server.
+* 8 idle in txn: 8 sesi idle dalam transaksi (terhubung tetapi tidak ada aktivitas transaksi).
+* 0 idle in txn abrt: Tidak ada transaksi idle yang dibatalkan.
+* 30 waiting: Ada 30 sesi yang sedang menunggu sumber daya (kemungkinan kunci) untuk melanjutkan aktivitasnya.
+3. Activity:
+* 1405 tps: Sistem sedang menangani 1405 transaksi per detik.
+* 1401 insert/s: Ada 1401 operasi INSERT per detik.
+* 4205 update/s: Ada 4205 operasi UPDATE per detik.
+* 0 delete/s: Tidak ada operasi DELETE per detik.
+* 6735 tuples returned/s: 6735 baris data dikembalikan per detik oleh query.
+* 0 temp files: Tidak ada file temporer yang dibuat.
+* 0B temp size: Tidak ada data sementara yang disimpan dalam file.
+4. Worker processes:
+* 0/8 total: Dari 8 proses worker yang tersedia, tidak ada yang sedang aktif.
+* 0/4 logical workers: Dari 4 worker logis, tidak ada yang sedang aktif.
+* 0/8 parallel workers: Dari 8 parallel worker, tidak ada yang sedang aktif.
+5. Other processes & info:
+* 0/3 autovacuum workers: Tidak ada proses autovacuum yang sedang berjalan dari total 3 yang diizinkan.
+* 1/10 wal senders: Satu dari 10 pengirim log WAL sedang aktif.
+* 0 wal receivers: Tidak ada penerima WAL yang aktif.
+* -/10 repl. slots: Tidak ada slot replikasi yang digunakan.
+6. Memory (Mem.):
+* 960.79M total: Total memori yang digunakan oleh PostgreSQL adalah 960.79 MB.
+* 81.13M (8.44%) free: Sebanyak 81.13 MB (8.44%) memori masih tersedia.
+* 377.43M (39.28%) used: Sebanyak 377.43 MB (39.28%) digunakan secara aktif oleh PostgreSQL.
+* 502.22M (52.27%) buff+cached: Sebanyak 502.22 MB (52.27%) digunakan untuk buffer dan cache.
+7. Swap:
+* 975.00M total: Total swap yang tersedia adalah 975 MB.
+* 602.31M (61.78%) free: Sebanyak 602.31 MB (61.78%) swap masih bebas.
+* 372.69M (38.22%) used: Sebanyak 372.69 MB (38.22%) swap sudah digunakan.
+8. IO (Input/Output):
+* 2729/s max iops: Sistem mencapai 2729 operasi input/output per detik (IOPS).
+* 7.67M/s: Kecepatan transfer data mencapai 7.67 MB per detik.
+* 1962/s read: Ada 1962 operasi baca per detik.
+* 3.00M/s read: Kecepatan baca mencapai 3.00 MB per detik.
+* 767/s write: Ada 767 operasi tulis per detik.
+* 3.00M/s write: Kecepatan tulis mencapai 3.00 MB per detik.
+9. Load average:
+* 2.73 1.00 0.57: Rata-rata beban sistem selama 1 menit, 5 menit, dan 15 menit terakhir, yang menunjukkan aktivitas CPU meningkat, terutama dalam 1 menit terakhir (2.73). Beban ini mengindikasikan bahwa CPU memiliki lebih banyak pekerjaan untuk diselesaikan, tapi belum terlalu penuh (masih di bawah angka 3).
+10. Fungsi NatNetwork pada konfig jaringan Vms
+Di VirtualBox, fungsi "NAT Network" adalah salah satu dari berbagai metode yang dapat digunakan untuk mengatur jaringan virtual antara mesin virtual (VM) dan host, serta antara beberapa VM itu sendiri. Berikut adalah penjelasan mengenai NAT Network dan bagaimana fungsinya:
+Fungsi NAT Network
+1. Jaringan Internal Virtual: NAT Network memungkinkan mesin virtual untuk terhubung satu sama lain dalam jaringan yang terisolasi dari jaringan fisik di luar host. Mesin-mesin ini dapat saling berkomunikasi satu sama lain dan juga dapat mengakses internet melalui host.
+2. Akses Internet: Dengan NAT Network, mesin virtual mendapatkan akses ke internet menggunakan alamat IP dari host. Mesin virtual tidak perlu memiliki alamat IP publik sendiri; mereka menggunakan alamat IP yang diterjemahkan (NAT - Network Address Translation) oleh VirtualBox.
+3. Konfigurasi yang Mudah: NAT Network lebih mudah diatur dibandingkan dengan beberapa opsi lainnya seperti Bridged Networking atau Host-only Networking, karena tidak memerlukan konfigurasi tambahan pada router atau jaringan fisik.
+4. Alamat IP Dinamis: Mesin virtual yang terhubung ke NAT Network mendapatkan alamat IP dinamis dari VirtualBox DHCP server. Ini mirip dengan bagaimana komputer di jaringan rumah mendapatkan alamat IP dari router.
+5. Keamanan: NAT Network memberikan lapisan keamanan tambahan karena mesin virtual tidak dapat diakses langsung dari jaringan luar, hanya dapat diakses melalui host atau melalui port forwarding yang dikonfigurasi.
+Cara Kerja NAT Network
+* Network Address Translation (NAT): Ketika sebuah VM mencoba mengakses internet, permintaan keluar dari VM dialihkan oleh VirtualBox ke jaringan host. VirtualBox kemudian mengubah alamat IP dari VM menjadi alamat IP host sebelum meneruskan permintaan ke internet. Ketika respons kembali, VirtualBox menerjemahkan alamat IP respons tersebut dan mengirimkannya kembali ke VM yang sesuai.
+* Port Forwarding: Jika Anda perlu mengakses layanan yang berjalan di VM dari luar jaringan (misalnya, menjalankan server web di VM), Anda dapat mengonfigurasi port forwarding untuk mengarahkan lalu lintas dari port tertentu di host ke port di VM.
+Pengaturan NAT Network di VirtualBox
+1. Membuat NAT Network:
+   * Buka VirtualBox.
+   * Pergi ke menu File > Host Network Manager.
+   * Klik tombol Create untuk membuat NAT Network baru. Anda bisa memberi nama pada jaringan ini dan mengatur berbagai parameter jika diperlukan.
+2. Mengonfigurasi VM untuk Menggunakan NAT Network:
+   * Pilih VM yang ingin Anda konfigurasikan.
+   * Pergi ke Settings > Network.
+   * Pilih salah satu adaptor jaringan, aktifkan dan pilih NAT Network dari menu drop-down.
+   * Pilih NAT Network yang telah Anda buat dari menu drop-down yang tersedia.
+Dengan NAT Network, Anda bisa mendapatkan keseimbangan antara kemudahan konfigurasi dan akses internet tanpa harus khawatir tentang pengaturan IP statis atau masalah keamanan yang lebih kompleks.
+
+
+11. Mempelajari Query Pada PostgreSQL
+1. Data Types Integer (Bilangan Bulat) pada PostgreSQL
+1. Integer: Tipe data bilangan bulat dengan rentang bilangan -2147483648 to 2147483647 dengan Length 4 bytes
+2. Bigint: Tipe data bilangan bulat besar dengan rentang bilangan -9223372036854775808 to 9223372036854775807 dengan Length 8 bytes
+3. Smallint: Tipe data bilangan bulat kecil dengan rentang bilangan -32768 to 32767 dengan Length 2 bytes.
+B. Data Types Floating (Bilangan Desimal) pada PostgreSQL
+1. Real: presisi tunggal digunakan untuk menyimpan angka desimal pada presisi rendah (sekitar 6 angka desimal) maksimal hanya bisa input 8 digit desimal, jika data yang dimasukkan lebih dari itu maka akan terpotong otomatis oleh sistem. Misalnya:
+postgres=# insert into floating (real_type) values (1.123456789);                              │
+INSERT 0 1                                                                                     │
+postgres=# select * from floating ;                                                            │
+ real_type | double_type | num_type | num_id                                                   │
+-----------+-------------+----------+--------                                                  │
+ 1.1234568 |                 |              |          2                                                   │
+(1 row)
+Pada query tersebut ketika dimasukan nilai desimal lebih dari 8 digit (1.123456789) maka secara otomatis akan terpotong menjadi (1.12345678).
+2. Double precision: presisi ganda merupakan tipe data float yang memungkinkan untuk menghasilkan nilai desimal yang lebih presisi dibanding tipe data REAL, pada double precision maksimal desimal ada 16 digit sehingga jika lebih dari itu nilainya akan terpotong.
+3. NUMERIC(p, s) atau DECIMAL(p, s) digunakan untuk presisi tetap. Di sini, p adalah total jumlah digit yang dapat disimpan, dan s adalah jumlah digit di bagian desimal. Berbeda dengan tipe floating-point biasa, NUMERIC tidak mengalami masalah pembulatan atau ketidakakuratan yang umum terjadi pada tipe REAL atau DOUBLE PRECISION. Tipe ini cocok untuk aplikasi yang memerlukan ketepatan tinggi, seperti transaksi keuangan.
+B. Tipe data Character pada PostgreSQL
+1. CHAR(n): digunakan untuk data berbentuk character yang digunakan berdasarkan kriteria jumlah karakter misal CHAR(10), artinya panjang maksimalnya adalah 10 karakter, jika diisi kurang dari karakter maka sisanya akan diisi otomatis dengan spasi (padding).
+2. VARCHAR(n): digunakan untuk data berbentuk character dan panjang karakter berdasarkan kriteria yang ditentukan misal VARCHAR(10), artinya panjang maksimal adalah 10 karakter, jika diisi kurang dari jumlah maksimal maka yang kurang akan tetap kosong.
+3. TEXT: digunakan untuk character apapun tanpa ada batas/limitasi terhadap jumlah dari karakternya.
+Perbedaan CHAR(n) dan VARCHAR(n): meskipun mereka sama-sama menginput jumlah karakter berdasarkan batas yang telah ditentukan, tetapi ada sedikit perbedaan terutama dalam hal efisiensi ruang. Pada CHAR(n) ketika kolom diinput kurang dari jumlah karakter yang telah ditentukan, maka sisa yang kosong akan diisi secara otomatis dengan spasi (padding), hal ini membuat sistem akan memakan penyimpanan yang ada sebagai bentuk antisipasi seandainya slot yang kosong tersebut akan diisi karakter lain. Sedangkan pada VARCHAR(n), ketika mengisi kurang dari jumlah karakter yang ditentukan, maka slot kosong itu tidak akan diisi, sehingga data yang muncul akan sama berdasarkan apa yang diinput. Penggunaan CHAR(n) cocok untuk value yang selalu memiliki length sama, misalnya kode pos, kode negara, atau kode barang. Sedangkan VARCHAR(n) digunakan untuk data yang panjangnya tidak selalu sama misalnya alamat rumah, nama lengkap seseorang, dan sebagainya.
+
+
+C. Tipe Data Boolean pada PostgreSQL
+1. Tipe data Boolean hanya berfungsi untuk satu hal, yaitu menampilkan nilai: TRUSE,FALSE, dan NOT NULL. Fungsi dari query tersebut hanya untuk menunjukan nilai antara TRUE atau FALSE, dan not null pada kolom sebagai penunjuk logika sederhana.
+D. Tipe Data Dates/Tanggal/Waktu
+1. DATE: Menyimpan tanggal tanpa waktu (format:YYYY-MM-DD).
+2. TIME: Menyimpan waktu tanpa tanggal (format:HH:MM:SS)
+3. TIMESTAMP: Menyimpan tanggal dan waktu (format:YYYY-MM-DD HH:MM:SS).
+4. TIMESTAMPZ: Sama dengan TIMESTAMP, tetapi menyimpan zona waktu.
+5. INTERVAL: Menyimpan interval waktu (misalnya perbedaan antara dua tanggal).
+E. Tipe Data UUID (Universally Unique Identifier)
+UUID adalah tipe data 128-bit yang digunakan untuk menyimpan pengidentifikasi unik secara global. Biasanya digunakan sebagai kunci unik.
+CREATE TABLE orders (
+        order_id UUID DEFAULT gen_random_uuid(),
+        product_name VARCHAR(100)
+);
+F. Tipe Data JSON dan JSONB
+1. JSON: digunakan untuk menyimpan data dalam format JSON (seperti string & indeks), Data disimpan dalam format teks asli (as-is), seperti string. Parsing (pemrosesan data JSON menjadi struktur data yang dapat digunakan) hanya dilakukan saat query berjalan, sehingga penyimpanan lebih cepat, tetapi query lebih lambat. Tidak diindeks secara default, dan tidak mendukung indeks khusus untuk JSON.
+2. JSONB: Menyimpan data JSON dalam format biner,  lebih cepat dalam pencarian dan indeksasi. Data di-store dalam format biner yang telah diurai (parsed), sehingga lebih efisien untuk pencarian dan manipulasi data. Mendukung indeks GIN dan GiST yang memungkinkan pencarian lebih cepat pada struktur JSON. Lebih lambat dalam penyimpanan, tetapi jauh lebih cepat dalam melakukan query atau filter data JSON karena data disimpan dalam bentuk terstruktur.
+G. Tipe Data Array pada PostgreSQL
+1. Tipe data array di PostgreSQL memungkinkan Anda menyimpan satu set nilai dalam satu kolom. Array bisa berupa array satu dimensi atau multi-dimensi.
+Beberapa tipe data yang mendukung array:
+* INTEGER[]: Array angka.
+* TEXT[]: Array string.
+* BOOLEAN[]: Array boolean.
+* Dan tipe data lainnya, seperti VARCHAR[], FLOAT[], dll.
+Contoh array:
+* '{1, 2, 3}' adalah array satu dimensi berisi angka.
+* '{red, green, blue}' adalah array satu dimensi berisi string.
+* '{ {1, 2}, {3, 4} }' adalah array dua dimensi.
+H. Tipe Data Enum (Enumarated) pada PostgreSQL
+1. ENUM: digunakan untuk membuat sekumpulan nilai yang terbatas dan eksplisit yang dapat dipilih oleh kolom tertentu. Tipe data ini sangat berguna jika Anda ingin membatasi nilai yang bisa dimasukkan ke dalam kolom, sehingga hanya nilai yang sudah didefinisikan sebelumnya yang diperbolehkan.
