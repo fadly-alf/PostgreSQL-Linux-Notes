@@ -1462,3 +1462,11 @@ Contoh array:
 * '{ {1, 2}, {3, 4} }' adalah array dua dimensi.
 H. Tipe Data Enum (Enumarated) pada PostgreSQL
 1. ENUM: digunakan untuk membuat sekumpulan nilai yang terbatas dan eksplisit yang dapat dipilih oleh kolom tertentu. Tipe data ini sangat berguna jika Anda ingin membatasi nilai yang bisa dimasukkan ke dalam kolom, sehingga hanya nilai yang sudah didefinisikan sebelumnya yang diperbolehkan.
+
+B-Tree	Pencarian umum (=, <, >, BETWEEN)
+Hash	Pencocokan eksak (=)
+GIN	Full-text search, array
+GiST	Data geospasial, JSON
+BRIN	Data besar yang berurutan (time-series)
+SP-GiST	Data terdistribusi tidak merata
+Covering Index	Mempercepat query dengan menyimpan data tambahan di indeks
