@@ -95,3 +95,33 @@ SELECT * FROM customer OFFSET customer_id  2;
 Gabungan Klausa LIMIT dan OFFSET:
 - Untuk mengambil data dengan limit tertentu dimulai dari nilai tertentu. Misal hanya ingin mengamil 10 values dengan values dimulai dari 91 maka seperti ini:
 SELECT customer_id FROM customer LIMIT 10 OFFSET 90; 
+
+6. Klausa MIN MAX (Nilai NULL diabaikan)
+- Untuk mengambil nilai terbesar atau terkecil dalam sebuah kolom:
+SELECT MIN/MAX(price) FROM tabel_harga; maka akan muncul nilai paling kecil atau berdasarkan
+
+7. Klausa SUM (Nilai NULL diabaikan)
+- Untuk menjumlahkan nilai int di sebuah kolom, misal kolom satu terdiri dari 3 baris dengan nilai 1 maka dapat dijumlahkan nilai pada kolom tersbut dan hasilnya 3 seperti ini:
+SELECT SUM(customer_id) FROM customer;
+
+8. Klausa AVG (Nilai NULL diabaikan)
+- Untuk menjumlahkan nilai int di sebuah kolom lalu menghasilkan nilai rata-rata:
+SELECT AVG(harga) FROM tabel_barang:
+
+- Tambahkan numeric setelah colom untuk membulatkan hasil rata rata seperti ini:
+SELECT AVG(harga)::numeric FROM tabel_barang:
+
+9. Klausa LIKE
+- Untuk mencari value dengan pola tertentu, digunakan bersamaan dengan klausa WHERE:
+SELECT * FROM customer WHERE nama_pelanggan LIKE 'An%'; simbol persen bertujuan untuk mencari pola yang mirip seperti itu misal hasil query tersebut seperti ini:
+ customer_id | nama_pelanggan  | membership
+-------------+-----------------+------------
+           2 | Andhika Pratama | Platinum
+           4 | Anjasmara       |
+(2 rows)
+
+- Pola %a% berarti mengambil nilai yang mengandung karakter a
+- LIKE itu case sensitive, sedangkan ILIKE tidak
+- a% berarti mencari string yang berawalan a
+- %a berarti mencari string yang berakhiran a
+- Underscore _ untuk mencari string yang hanya diingat beberapa karakternya saja misal 'L_in_d_'
