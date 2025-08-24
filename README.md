@@ -1,2 +1,2 @@
-# project-git
+# PostgreSQL - Linux Notes
 Project ala ala
