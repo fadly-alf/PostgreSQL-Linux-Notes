@@ -169,3 +169,9 @@ SELECT nama_karyawan AS "Nama Karyawan Terbaik" FROM employees;
 
 13. Klausa JOIN
 - Untuk menggabungkan kolom dari dua/lebih tabel yang berbeda untuk menjadi satu berdasarkan satu kolom yang memiliki kesamaan umumnya primary key dan foreign key. Misal ada dua tabel sebagai berikut
+
+14. Query Untuk Mengecek Table dan User apa saja yang mengakses tabel tersebut:
+SELECT grantee, privilege_type
+FROM information_schema.role_table_grants
+WHERE table_schema = 'public'  -- ganti sesuai schema
+  AND table_name = 'nama_tabel';
