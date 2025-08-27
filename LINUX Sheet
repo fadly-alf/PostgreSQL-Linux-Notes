@@ -1,0 +1,24 @@
+LINUX COMMAND
+
+1. AWK
+- Menganalisa pola dan memproses bahasa
+
+- Untuk mengambil kolom dari sebuah file dapat dilakukan seperti berikut:
+
+Misal nama file adalah file_123 dengan isi file seperti ini lalu ingin mengambil kolom 1 yang berisi angka 1 saja maka seperti ini:
+12345 6789
+12345 6789
+12345 6789
+12345 6789
+
+awk '{print $1}' file_123 maka akan mengambil kolom pertaama atau kata pertama
+awk -F "2" '{print $1}' file_123
+Jadi -F itu digunakan sebagai separator antara kolom yang satu dan lainnya
+Lalu -v untuk menambahkan variabel kedalam output dari kolom, misal isi file_123 adalah:
+Nama,Umur,Status
+John,25,Single
+Anna,30,Married
+Mike,22,Single
+
+Lalu misal kita ingin mengambil kolom umur tapi ingin menambah variabel 'Usia' untuk kolom tersebut maka command seperti berikut:
+#awk -F , -v var="Usia:" '{print var, $2}' file_123
