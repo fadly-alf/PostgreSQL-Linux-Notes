@@ -175,3 +175,6 @@ SELECT grantee, privilege_type
 FROM information_schema.role_table_grants
 WHERE table_schema = 'public'  -- ganti sesuai schema
   AND table_name = 'nama_tabel';
+
+15. Menghapus Proses Menggunakan PID
+SELECT pg_terminate_backend(backend_process_id);
