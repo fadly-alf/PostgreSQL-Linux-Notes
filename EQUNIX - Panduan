@@ -768,6 +768,16 @@ WHERE table_schema = 'public'  -- ganti sesuai schema
 SELECT pg_terminate_backend(backend_process_id);
 
 
+POSTGRESQL BACKUP:
+
+1. pg_dump
+Untuk backup satu database saja atau bisa juga tabel tertentu. Untuk lebih lengkap lihat pg_dump --help 
+Jalankan command psql -U pgsql -d namadb_yg_dibackup -p port_db_yg_dibackup -Fc/p >> nama_file_hasil_backup (c untuk format custom binary sedangkan p untuk text sql)
+
+2. pg_dumpall
+Untuk backup satu cluster (database, role, schema). Bisa untuk backup salah satu saja. Lebih lengkap lihat di pg_dumpall --help
+Jalankan command: pg_dumpall -U pgsql -p portdb_yg_dibackup -f nama_file_hasil_backup 
+
 LINUX NOTES:
 
 LINUX COMMAND
@@ -794,3 +804,22 @@ Mike,22,Single
 
 Lalu misal kita ingin mengambil kolom umur tapi ingin menambah variabel 'Usia' untuk kolom tersebut maka command seperti berikut:
 #awk -F , -v var="Usia:" '{print var, $2}' file_123
+
+2. Membuat Tethering/AP (Access Point) di Linux
+- Cek apakah perangkat wifi mendukuung AP dengan command 
+#iw list
+
+- Install dependecies 
+#sudo apt install util-linux hostapd iproute2 iw dnsmasq iptables
+
+- Install create_ap
+#git clone https://github.com/oblique/create_ap
+#cd create_ap
+#sudo make install 
+
+- Jalankan command:
+#sudo create_ap nama_interface_wifi nama_interface_wifi nama_ssid_yg_diinginkan password_8_karakter 
+Contoh:
+#sudo create_ap wlp2s0 wlp2s0 Equnix 12345678 (share dari WiFi ke WiFi. Untuk nama interface dapat dicek melalui ip a. Cari interface wifi berawalan huruf w)
+#sudo create_ap wlan0 eth0 nama_ssid password_wifi (share koneksi dari LAN (eth0) ke wireless (wlan0))
+#sudo create_ap wlan0 ppp0 nama_ssid password_wifi (share koneksi dari modem)
