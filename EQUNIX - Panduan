@@ -581,3 +581,216 @@ postgres=# \d information_schema.role_table_grants
 #Hal yang perlu diubah di script jika menggunakan Postgres16
 1. wal_keep_segments diubah ke wal_keep_size 
 2. promote_trigger_file dihapus
+
+
+POSTGRESQL NOTES:
+DOKUMENTASI POSTGRESQL: https://www.postgresql.org/docs/current/
+
+INSTALASI POSTGRES:
+1. Menginstall development tools dan dependencies
+#sudo apt-get install build-essential libreadline-dev zlib1g-dev flex bison libxml2-dev libxslt-dev libssl-dev libxml2-utils xsltproc pkgconf ccache 
+Build-essential: paket meta di sistem berbasis Debian yang mencakup berbagai paket yang sangat penting untuk membangun perangkat lunak daris source code seperti GNU C++ compiler dan Make.
+
+Pada system RHEL/Centos/Alma/ gunakan perintah berikut:
+#sudo dnf install -y gcc gcc-c++ readline-devel zlib-devel flex bison libxml2-devel libxslt-devel openssl-devel libicu-devel pkgconf ccache
+
+2. Mendownload source code dari website postgresql
+Mendownload source code dari ftp postgresql dengan perintah wget(ini versi 12.16)
+#wget https://ftp.postgresql.org/pub/source/v12.16/postgresql-12.16.tar.gz
+
+3. Ekstrak tarball
+#tar xvfz postgresql-12.16.tar.gz
+
+4. Pindah ke direktori yang postgresql-12.16 dan buat direktori untuk penginstalan
+# cd postgresql-12.8
+# sudo mkdir -p /equnix/apps/12
+
+5. Compile dan arahkan kompliasi ke direktori yang sudah dibuat
+#./configure --prefix=/equnix/apps/12 Tujuan untuk melakukan konfigurasi instalasi dengan target pemasangan adalah direktori tersebut. note: kalau gagal saat configure lihat dulu muncul error apa, install terlebih dahulu dependecies yang dibutuhkan
+# make proses "kompilasi kode sumber"
+# make install  "proses pemasangan file hasil kompilasi ke sistem agar dapat digunakan oleh pengguna dan aplikasi lain."
+
+6. Buat user pgsql
+#adduser pgsql
+
+7. Buat direktori untuk data dan write-ahead log(wal) dan set pemilik ke pgsql
+#sudo mkdir -p /equnix/data
+#sudo mkdir -p /equnix/wal
+#sudo chown -R pgsql. /equnix/data
+#sudo chown -R pgsql. /equnix/wal
+
+8. Tambahkan direktori /equnix/apps/12/bin ke variabel PATH
+#echo 'export PATH=$PATH:/equnix/apps/12/bin' >> ~/.bashrc
+source ~/.bashrc
+
+9. Ganti ke user pgsql
+#su pgsql
+
+10. Initialisasi PostgreSQL database cluster
+#/equnix/apps/12/bin/initdb -D /equnix/data -X /equnix/wal -U pgsql
+
+11. Pindah ke /equnix/data dan ganti nama pg_wal ke pg_wal_old
+#cd /equnix/data
+#mv pg_wal pg_wal_old
+
+12. Buat symlink ke /equnix/wal dan pindahkan isi pg_wal_old ke sana 
+#ln -s /equnix/wal pg_wal
+#mv pg_wal_old/* pg_wal
+#rm pg_wal_old
+
+13. Pindah ke /equnix/apps/12/bin dan mulai postgresql
+$cd /equnix/apps/12/bin/
+$/equnix/apps/12/bin/pg_ctl -D /equnix/data/ -l /equnix/data/logfile start
+
+14. Masuk ke postgres
+/equnix/apps/12/bin/psql -U pgsql postgres -p 5432
+
+
+POSTGRES QUERY:
+
+1. SELECT DISTINCT: 
+- Untuk menampilkan values yang berbeda dalam sebuah column, misal dalam column membership terdapat jenis member Gold, Platinum, dan Silver. Query distincti akan mengambil values dari column membership yang berbeda saja sebagai berikut:
+SELECT kolom1, kolom2 FROM nama_tabel;
+
+2. SELECT COUNT
+- Untuk menghitung berapa values dalam satu column, misal dalam satu column ada 5 values maka ketika menjalankan query berikut:
+SELECT COUNT (nama_kolom) FROM nama_tabel; maka akan menghasilkan output seperti ini:
+
+supermarket=> select count (membership) from customer;
+ count
+-------
+     3
+(1 row)
+
+3. Klausa WHERE
+- Sebagai filter untuk mencari, menghapus, atau menambahkan value pada sebuah tabel berdasarkan kriteria tertentu, misal mencari nama_pelanggan dengan membership gold maka seperti ini:
+
+SELECT nama_pelanggan FROM customer WHERE membership = 'Gold';
+
+4. ORDER BY Keyword
+- Untuk memfilter hasil pencarian berdasarkan kriteria urutan, urutan angka atau alphabet seperti ini:
+SELECT * FROM customer ORDER BY customer_id ASC | DESC; 
+SELECT * FROM customer ORDER BY customer_id ASC, membership DESC;
+
+5. Klausa LIMIT
+- Untuk membatasi data yang ditampilkan misal hanya ingin ambil 10 saja maka seperti ini:
+SELECT * FROM customer LIMIT 10;
+
+Klausa OFFSET
+- Untk memulai menampilkan data diatas values yang diberikan, jadi values pertama dimulai dari 0, jika menggunakan OFFSET misal OFFSET 40 artinya data yang dtiampilkan mulai dari 41:
+SELECT * FROM customer OFFSET customer_id  2;
+
+Gabungan Klausa LIMIT dan OFFSET:
+- Untuk mengambil data dengan limit tertentu dimulai dari nilai tertentu. Misal hanya ingin mengamil 10 values dengan values dimulai dari 91 maka seperti ini:
+SELECT customer_id FROM customer LIMIT 10 OFFSET 90; 
+
+6. Klausa MIN MAX (Nilai NULL diabaikan)
+- Untuk mengambil nilai terbesar atau terkecil dalam sebuah kolom:
+SELECT MIN/MAX(price) FROM tabel_harga; maka akan muncul nilai paling kecil atau berdasarkan
+
+7. Klausa SUM (Nilai NULL diabaikan)
+- Untuk menjumlahkan nilai int di sebuah kolom, misal kolom satu terdiri dari 3 baris dengan nilai 1 maka dapat dijumlahkan nilai pada kolom tersbut dan hasilnya 3 seperti ini:
+SELECT SUM(customer_id) FROM customer;
+
+8. Klausa AVG (Nilai NULL diabaikan)
+- Untuk menjumlahkan nilai int di sebuah kolom lalu menghasilkan nilai rata-rata:
+SELECT AVG(harga) FROM tabel_barang:
+
+- Tambahkan numeric setelah colom untuk membulatkan hasil rata rata seperti ini:
+SELECT AVG(harga)::numeric FROM tabel_barang:
+
+9. Klausa LIKE
+- Untuk mencari value dengan pola tertentu, digunakan bersamaan dengan klausa WHERE:
+SELECT * FROM customer WHERE nama_pelanggan LIKE 'An%'; simbol persen bertujuan untuk mencari pola yang mirip seperti itu misal hasil query tersebut seperti ini:
+ customer_id | nama_pelanggan  | membership
+-------------+-----------------+------------
+           2 | Andhika Pratama | Platinum
+           4 | Anjasmara       |
+(2 rows)
+
+- Pola %a% berarti mengambil nilai yang mengandung karakter a
+- LIKE itu case sensitive, sedangkan ILIKE tidak
+- a% berarti mencari string yang berawalan a
+- %a berarti mencari string yang berakhiran a
+- Underscore _ untuk mencari string yang hanya diingat beberapa karakternya saja misal 'L_in_d_'
+
+10. Klausa IN
+- Untuk mencari values berdasarkan kolom lain, misal dalam sebuah tabel ada 2 kolom yaitu nama dan ras, kita ingin mengambil nama seseorang berdasarkan ras mereka misalnya ras batak, maka jalankan query sebagai berikut: 
+SELECT kolom_1 FROM nama_tabel WHERE kolom_2 IN ('kriteria'); 
+
+-Contoh
+SELECT nama FROM penduduk WHERE ras IN ('Batak', 'Sunda');
+
+- Menggunakan IN (SELECT)
+Untuk mencari values berdasarkan kolom lain yang berada pada tabel lain seperti ini:
+SELECT nama FROM penduduk WHERE suku IN (SELECT nama_suku FROM suku);
+
+- Menggunakan NOT IN (SELECT)
+Untuk mencari values berdasarkan kolom lain yang dikecualikan yang berada pada tabel lain seperti ini:
+SELECT nama FROM penduduk WHERE suku IN (SELECT nama_suku FROM suku WHERE nama_suku = 'Minang');
+
+11. Klausa BETWEEN
+- Untuk mencari values berdasarkan interval tertentu misal antara 1 dan 7 tetapi nila awal dan akhir dimasukan:
+SELECT nama_karyawan FROM employees WHERE id_karyawan BETWEEN 1 AND 7;
+
+- BETWEEN dengan Text, maka hasilnya akan menampilkan nilai alphabet 
+SELECT nama_karyawan FROM employees WHERE id_karyawan BETWEEN 'Andi' AND 'Cahya';
+
+- BETWEEN dengan date, maka hasilnya akan menampilkan nilai tanggal:
+SELECT * FROM orders
+WHERE order_date BETWEEN '2023-04-12' AND '2023-05-05';
+
+12. Klausa AS
+- Untuk membuat sebuah alias untuk menggantikan nama tabel atau nama kolom agar lebih mudah dibaca. Durasi penggunaan AS hanya sementara yaitu sepanjang query tersebut berjalan saja:
+SELECT id_karyawan AS id, nama_karyawan AS nama FROM employees;
+ 
+ atau seperti ini, tanpa AS pun hasilnya sama:
+
+ SELECT id_karyawan AS id, nama_karyawan AS nama FROM employees;
+
+- Menggabungkan dua kolom dan dibuat alias seperti ini gunaka simbol || :
+SELECT id_karyawan, nama_karyawan || AS nama FROM employees;
+
+
+- Menggunakan alias dengan spasi seperti ini:
+SELECT nama_karyawan AS "Nama Karyawan Terbaik" FROM employees;
+
+13. Klausa JOIN
+- Untuk menggabungkan kolom dari dua/lebih tabel yang berbeda untuk menjadi satu berdasarkan satu kolom yang memiliki kesamaan umumnya primary key dan foreign key. Misal ada dua tabel sebagai berikut
+
+14. Query Untuk Mengecek Table dan User apa saja yang mengakses tabel tersebut:
+SELECT grantee, privilege_type
+FROM information_schema.role_table_grants
+WHERE table_schema = 'public'  -- ganti sesuai schema
+  AND table_name = 'nama_tabel';
+
+15. Menghapus Proses Menggunakan PID
+SELECT pg_terminate_backend(backend_process_id);
+
+
+LINUX NOTES:
+
+LINUX COMMAND
+
+1. AWK
+- Menganalisa pola dan memproses bahasa
+
+- Untuk mengambil kolom dari sebuah file dapat dilakukan seperti berikut:
+
+Misal nama file adalah file_123 dengan isi file seperti ini lalu ingin mengambil kolom 1 yang berisi angka 1 saja maka seperti ini:
+12345 6789
+12345 6789
+12345 6789
+12345 6789
+
+awk '{print $1}' file_123 maka akan mengambil kolom pertaama atau kata pertama
+awk -F "2" '{print $1}' file_123
+Jadi -F itu digunakan sebagai separator antara kolom yang satu dan lainnya
+Lalu -v untuk menambahkan variabel kedalam output dari kolom, misal isi file_123 adalah:
+Nama,Umur,Status
+John,25,Single
+Anna,30,Married
+Mike,22,Single
+
+Lalu misal kita ingin mengambil kolom umur tapi ingin menambah variabel 'Usia' untuk kolom tersebut maka command seperti berikut:
+#awk -F , -v var="Usia:" '{print var, $2}' file_123
