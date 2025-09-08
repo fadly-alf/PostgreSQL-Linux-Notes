@@ -823,3 +823,64 @@ Contoh:
 #sudo create_ap wlp2s0 wlp2s0 Equnix 12345678 (share dari WiFi ke WiFi. Untuk nama interface dapat dicek melalui ip a. Cari interface wifi berawalan huruf w)
 #sudo create_ap wlan0 eth0 nama_ssid password_wifi (share koneksi dari LAN (eth0) ke wireless (wlan0))
 #sudo create_ap wlan0 ppp0 nama_ssid password_wifi (share koneksi dari modem)
+
+1. Membuat Gateway Server dengan IP Forwarding dan NAT menggunakan nftables
+
+a) Setup VM Gateway/Jumphost (VM yang akan menjadi Gateway (Umumnya Menjadi Jumphost))
+- Adapter 1: Bridge (Untuk internet)
+- Adapter 2: Internal Network (misal inet)
+- Edit /etc/network/interfaces
+    # Internet (Bridge)
+    auto eth0 (nama interface yg untuk terima internet. Dapat disesuaikan)
+    iface eth0 inet dhcp
+
+    # Jaringan Internal (static)
+    auto eth1
+    iface eth1 inet static
+    address 10.0.0.1
+    netmask 255.255.255.0
+
+- #sudo systemctl restart networking (restart network)
+
+b) Setup VM Client (Client yang akan memiliki jaringan internal)
+- Adapter 1: Internal Adapter Inet (adapter yang sama dengan yang digunakan di gateway server)
+- Setting IP inet:
+- #vim /etc/network/interfaces
+    auto eth1 (nama interfaces)
+    iface eth1 inet static
+    address 10.0.0.2
+    netmask 255.255.255.0
+    gateway 10.0.0.1 (ip yg ada di Gateway server)
+    dns-nameserver 8.8.8.8 (agar bisa ping ke 8.8.8.8)
+- #sudo systemctl restart networking
+
+c) Aktifkan IP Forwarding di Gateway Server
+- #sudo sysctl -w net.ipv4.ip_forward=1
+- Edit permanen di /etc/sysctl.conf lalu cari line diatas dan uncommand
+- #sudo sysctl -p
+
+d) Konfigurasi nftables di Gateway Server
+#NAT Table
+- #sudo nft flush ruleset (ini hanya untuk reset setting yang sudah ada saja)
+- #sudo nft add table ip nat
+- #sudo nft 'add chain ip nat postrouting {type nat hook postrouting priority 100;}'
+- #sudo nft add rule ip nat postrouting oif "eth0" masquerade
+
+#Filter Table
+- #sudo nft add table ip filter
+- #sudo nft 'add chain ip filter forward { type filter hook forward priority 0 ; }'
+- #sudo nft add rule ip filter forward iif "eth1" oif "eth0" accept
+- #sudo nft add rule ip filter forward iif "eth0" oif "eth1" ct state established,related accept
+
+e) Testing
+- Dari VM Client → ping 10.0.0.1 → pastikan bisa.
+- Dari VM Client → ping 8.8.8.8 → internet via gateway.
+- Dari VM Client → ping google.com → pastikan DNS berjalan.
+
+f) Buat Persisten (Opsional)
+Simpan aturan nftables:
+- #sudo sh -c 'nft list ruleset > /etc/nftables.conf'
+
+ Aktifkan service agar otomatis load saat boot:
+- #sudo systemctl enable nftables
+- sudo systemctl start nftables
