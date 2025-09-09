@@ -1,0 +1,52 @@
+#!/bin/bash
+# Copyright 2007-2022 Equnix Business Solutions,PT. All rights reserved
+# Script compile by: Iyan Iskandar
+# Developed by: Equnix Technical Team
+# "-------------------------------------------------------------------------";
+# "|                    FORCE FAILOVER SCRIPTS                            |"
+# "|                    INTERNAL                                          |"
+# "|                    202208                                            |"
+#  "------------------------------------------------------------------------";
+#CLIENT="INTERNAL"
+PRIVATE_PEER=10.0.2.52
+#PRIVATE_PEER=10.1.1.4
+PGUSER=pgsql
+OSUSER=pgsql
+PEER_NODE=node2
+PGDATADIR=/equnix/data
+DBPORT=5432
+SSHPORT=22
+LOGFILE=/equnix/scripts/logs/forced_failover_$(date +%Y%m%d).log
+
+# EmailAccount
+#DSTM="support@equnix.asia"
+#MAIL_FILE=/tmp/forced_failover
+
+# Function
+#send_mail_alert() {
+#       {
+#       echo "Importance: HIGH"
+#       echo ""
+#       echo "Dear Team,"
+#       echo ""
+#       echo "$HOSTNAME has executed FAILOVER and became MASTER on $(date +'%F %T')."
+#       echo "Please check PostgreSQL instance instance and Virtual IP acquisition on server $HOSTNAME."
+#       echo "--------------------------------"
+#       echo " PostgreSQL Processes"
+#       sudo pgrep -a postgres| head -n 50
+#       sleep 2;
+#       echo "IP Address Check"
+#       ip addr;
+#       echo "--------------------------------"
+#       echo ""
+#       echo "Thank you."
+#       } > "$MAIL_FILE";
+#    /usr/bin/mail -s "[ $CLIENT ] $HOSTNAME FAILOVER ALERT $(date +'%F %T')" "$DSTM" < "$MAIL_FILE";
+#}
+
+logger() {
+        echo "$(date '+%F %T')|$(hostname)|$1" >> "$LOGFILE"
+}
+
+case $1 in
+/equnix/scripts/ha/equ_forced_failover.sh

@@ -1,0 +1,7 @@
+#ssl = on
+#ssl_ca_file = '/equnix/data/root.crt'
+#ssl_cert_file = '/equnix/data/server.crt'
+#ssl_crl_file = ''
+#ssl_key_file = '/equnix/data/server.key'
+#ssl_ciphers = 'HIGH:MEDIUM:+3DES:!aNULL' # allowed SSL ciphers
+#ssl_prefer_server_ciphers = on

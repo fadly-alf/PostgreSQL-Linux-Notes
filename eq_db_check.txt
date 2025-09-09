@@ -1,0 +1,52 @@
+#!/bin/bash
+# Copyright 2007-2022 Equnix Business Solutions,PT. All rights reserved
+# Script compile by: Iyan Iskandar
+# Developed by: Equnix Technical Team
+# "-------------------------------------------------------------------------";
+# "|                    DBCHEK SCRIPTS                                  |"
+# "|                    INTERNAL                                          |"
+# "|                    202208                                            |"
+#  "------------------------------------------------------------------------";
+
+#CLIENT="INTERNAL"
+BINDIR=/equnix/apps/12/bin
+PGDATADIR=/equnix/data
+PEER_HOSTN=node2
+PEER_NODE=10.0.2.52
+LOGFILE=/equnix/scripts/logs/dbcheck_$(date '+%Y%m').log
+#MAILFILE=/tmp/maildbcheck
+#MAIL_DEST="fauzan@equnix.asia"
+FLAGS="/tmp/peerdown"
+
+# Connection Parameter
+PGUSER=pgsql
+OSUSER=pgsql
+DBPORT=5432
+SSHPORT=22
+export PGPASSFILE=/equnix/scripts/.pgpass
+
+logger (){
+        echo "$(date +'%F %T')|$(hostname)|$1" >> "$LOGFILE";
+}
+
+#fsendmail () {
+#       {
+#                echo "================================"
+#                date
+#                echo "================================"
+#                echo -e "Importance: MEDIUM\n"
+#                echo -e "Dear Team,\n"
+#                echo "$2"
+#                echo -e "\nThank you."
+#       } > $MAILFILE-"$1"
+#        /usr/bin/mail -s "[ $CLIENT ] Instance $1 has down" $MAIL_DEST < $MAILFILE-"$1";
+#       logger "Email $MAILFILE-$1 sent";
+#}
+
+instance_check(){
+        /usr/bin/netstat -ltpn | grep postgres | grep -c $DBPORT
+}
+
+is_standby_ready(){
+        su - $OSUSER -c "ssh -p $SSHPORT -o ConnectTimeout=3 -o ConnectionAttempts=1 -t $PEER_NODE \"sudo /usr/bin/netstat -lptn | grep postgres\"" | grep -c $DBPORT
+:

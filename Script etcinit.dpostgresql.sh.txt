@@ -1,0 +1,7 @@
+WHO=whoami
+PGUSER=pgsql
+PGCTL=/equnix/apps/12/bin/pg_ctl
+DTDIR=/equnix/data
+LGSTR=${DTDIR}/startup.log
+
+  su - $PGUSER -c "$PGCTL -D $DTDIR -l $LGSTR $1";

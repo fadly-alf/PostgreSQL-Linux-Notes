@@ -1,0 +1,10 @@
+LOG_FILE=/equnix/scripts/logs/promote_$(date +%F).log
+case $1 in
+start)
+        echo "$(date '+%F %T')|$(hostname)|promoting standby server" >> "$LOG_FILE"
+        touch /equnix/data/promote_standby
+        exit 0
+;;
+*)
+        exit 0;
+esac;

@@ -1,0 +1,12 @@
+LOGFILE=/equnix/scripts/logs/exec_failover_$(date +%Y%m).logLOGFILE=/equnix/scripts/logs/exec_failover_$(date +%Y%m).log
+logger (){
+        # logger <message>
+        echo "$(date +'%F %T')|$(hostname)|$1" >> "$LOGFILE";
+}
+logger "killing local PostgreSQL instances $HOSTNAME"
+for i in $(/usr/bin/netstat -lpnt | grep postgres|grep -v tcp6| awk '{print $7}'| awk -F '/' '{print $1}');
+        do kill -9 "$i";
+done
+logger "Failover executed $HOSTNAME"
+/sbin/reboot
+exit 0
