@@ -767,6 +767,12 @@ WHERE table_schema = 'public'  -- ganti sesuai schema
 15. Menghapus Proses Menggunakan PID
 SELECT pg_terminate_backend(backend_process_id);
 
+16. Membuat Table Partisi
+#Tabel yg akan dipartisi
+- CREATE TABLE nama_table (kolom type) partition by range (kolom_yg_akan_dipartisi);
+
+#Tabel yang akan menjadi partisi
+- CREATE TABLE nama_table_partisi partition from table_yg_dipartisi from (tgl) to (tgl);
 
 POSTGRESQL BACKUP:
 
