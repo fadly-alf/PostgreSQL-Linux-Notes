@@ -561,6 +561,14 @@ exit 0
 10.0.2.32:5432:postgres:pgsql:pgsql #ip node2
 10.0.2.33:5432:postgres:pgsql:pgsql #ip node3 (logical)
 
+15. Menyiapkan 3 hal ini: 
+a. 3 IP Public should be prepared and and 2 IP Private
+b. UDP connections should be opened for port 5404 and 5405
+c. TCP connections should be opened for port 2224
+- #sudo iptables -A INPUT -p udp --dport 5404 -j ACCEPT
+- #sudo iptables -A INPUT -p udp --dport 5405 -j ACCEPT
+- #sudo iptables -A INPUT -p tcp --dport 2224 -j ACCEPT
+
 
 cek privileged user:
 select grantor, grantee, table_schema, table_name, privilege_type from information_schema.role_table_grants where grantee = 'nama_user';
