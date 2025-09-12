@@ -500,7 +500,7 @@ check_standby() {
                 exit 0;
         else
 		IS_REPS_UP=$(dbexec "SELECT 1 FROM pg_stat_replication WHERE client_addr='${PEER_NODE}' AND state='streaming'");
-		if [ $?" -eq 0 ];then
+		if [ "$?" -eq 0 ];then
 			if [ "$IS_REPS_UP" != 1 ]; then
                                 logger "Standby PostgreSQL service is NOT running!!!";
                                 if [ ! -e $FLAGS ]; then
