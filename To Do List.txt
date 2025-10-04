@@ -1,0 +1,71 @@
+To Do List 
+
+Mengerjakan PM:
+- Artajasa 
+- XL (5 Dokumen (RMS, RTS, IOU, SSP, CIP))
+- BKWH
+
+Akses Server Artajasa via BYT:
+
+1. Install VPN Cisco AnyConnect
+2. Buka Cisco dan login VPN:
+- Masukan credential berikut:
+Connect To: scna1.artajasa.co.id:10443
+Group: Artajasa-Vendor
+Username: equnix.iyan
+Password: 63%jJSkdK2K#
+
+- Masukan authentication yang muncul di ponsel 
+
+3. Login BYT
+- Buka link berikut: https://10.14.52.179/WebConsole
+- User: equnix.iyan
+- Password: 63%jJSkdK2K#
+
+4. Ambil akses login ke server melalui BYT
+- Masuk ke tab Request
+- Pilih salah satu request ssh yang sudah diberikan lalu klik : (titik tiga) disebelah kanan
+- Salin command 
+
+
+Architecture postgresql:
+
+menjalankan host base authentication
+menggunakan unix socket 
+
+global berisi catalog system berupa pagefile yang akan menyimpan data
+dblink
+
+ansisql upsert
+
+hot update/heap only update
+
+acid: consistency dan isolation
+
+vacuum tidak hanya untuk membersihkan size, tapi juga mempercepat sequencial scan
+vacuum juga termasuk kedalam reindex
+
+reclaim space. 
+
+vacuum full: baris nya dihapus
+vacumm biasa: barisnya bisa dipakai
+vacuum freeze:  
+vacuum analyze
+
+Dirty Read: flush ketika dia mark as dirty
+
+Kernel Cache
+postgresql cache, ketika hit data ada cache hit dan cache miss. Set buffer untuk berkomunikasi data
+
+ketika ada query yang berjalan dan ditambhkan dengna for update maka akan menjadi exclusive lock
+
+Jadi select biasa itu tidak akan lock pada row nya, tetapi jika menggunakan for update maka akan menimbulkan exclusive lock
+for no key update
+
+temp table: 
+
+Normalisasi:horizontal dan vertical partioning
+Denormalisasi: kenapa ada olap, karena ideal untuk banyk select dan join, oleh karena itu dilakukan Denormalisasi
+Pivoting
+Fact table dan dimensional table
+nested loop
